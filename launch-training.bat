@@ -121,11 +121,19 @@ if not exist "%PROGRESS_FILE%" (
 
 :: Check completed modules (simple findstr-based check)
 set "M11=[ ]" & set "M12=[ ]" & set "M13=[ ]" & set "M14=[ ]" & set "M15=[ ]"
+set "M21=[ ]" & set "M22=[ ]" & set "M23=[ ]" & set "M24=[ ]" & set "M25=[ ]" & set "M26=[ ]" & set "M27=[ ]"
 findstr /c:"1.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M11=[✓]"
 findstr /c:"1.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M12=[✓]"
 findstr /c:"1.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M13=[✓]"
 findstr /c:"1.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M14=[✓]"
 findstr /c:"1.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M15=[✓]"
+findstr /c:"2.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M21=[✓]"
+findstr /c:"2.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M22=[✓]"
+findstr /c:"2.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M23=[✓]"
+findstr /c:"2.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M24=[✓]"
+findstr /c:"2.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M25=[✓]"
+findstr /c:"2.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M26=[✓]"
+findstr /c:"2.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M27=[✓]"
 
 :: ============================================================
 :: MAIN MENU
@@ -139,7 +147,17 @@ echo     %M13% 1.3  Build Your Brain              (15 min)
 echo     %M14% 1.4  Prompt Engineering for Local   (15 min)
 echo     %M15% 1.5  Ship It                        (15 min)
 echo.
-echo   PHASE 2 — OPERATORS  [93m[COMING SOON][0m
+echo.
+echo   PHASE 2 — OPERATORS  [92m[UNLOCKED][0m
+echo   ─────────────────────────────────────
+echo     %M21% 2.1  Load Your Business Brain     (15 min)
+echo     %M22% 2.2  The Instant Answer Desk      (15 min)
+echo     %M23% 2.3  Draft It                      (20 min)
+echo     %M24% 2.4  Sort and Route                (15 min)
+echo     %M25% 2.5  Paperwork Machine             (20 min)
+echo     %M26% 2.6  Chain Reactions                (20 min)
+echo     %M27% 2.7  Your Operator Dashboard        (15 min)
+echo.
 echo   PHASE 3 — EVERYDAY   [93m[COMING SOON][0m
 echo   PHASE 4 — LEGACY     [93m[COMING SOON][0m
 echo.
@@ -147,13 +165,20 @@ echo   ────────────────────────�
 echo     H  Health Check     R  Reset Progress
 echo     Q  Quit
 echo.
-set /p "CHOICE=  Select module (1.1-1.5) or option: "
+set /p "CHOICE=  Select module (1.1-2.7) or option: "
 
 if "%CHOICE%"=="1.1" goto mod11
 if "%CHOICE%"=="1.2" goto mod12
 if "%CHOICE%"=="1.3" goto mod13
 if "%CHOICE%"=="1.4" goto mod14
 if "%CHOICE%"=="1.5" goto mod15
+if "%CHOICE%"=="2.1" goto mod21
+if "%CHOICE%"=="2.2" goto mod22
+if "%CHOICE%"=="2.3" goto mod23
+if "%CHOICE%"=="2.4" goto mod24
+if "%CHOICE%"=="2.5" goto mod25
+if "%CHOICE%"=="2.6" goto mod26
+if "%CHOICE%"=="2.7" goto mod27
 if /i "%CHOICE%"=="H" goto healthcheck
 if /i "%CHOICE%"=="R" goto resetprogress
 if /i "%CHOICE%"=="Q" goto quit
@@ -182,6 +207,34 @@ goto run_module
 
 :mod15
 set "MOD_DIR=%BASE_DIR%phases\phase-1-builders\module-1.5-ship-it"
+goto run_module
+
+:mod21
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.1-load-your-business-brain"
+goto run_module
+
+:mod22
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.2-instant-answer-desk"
+goto run_module
+
+:mod23
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.3-draft-it"
+goto run_module
+
+:mod24
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.4-sort-and-route"
+goto run_module
+
+:mod25
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.5-paperwork-machine"
+goto run_module
+
+:mod26
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.6-chain-reactions"
+goto run_module
+
+:mod27
+set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.7-operator-dashboard"
 goto run_module
 
 :run_module

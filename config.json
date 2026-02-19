@@ -75,9 +75,85 @@
     },
     "phase-2-operators": {
       "title": "OPERATORS",
-      "status": "coming_soon",
+      "status": "active",
       "target_audience": "Small business owners, dispatchers, hustlers",
-      "modules": {}
+      "modules": {
+        "2.1": {
+          "id": "2.1",
+          "title": "Load Your Business Brain",
+          "description": "Turn your business documents into a searchable AI knowledge base. Pricing, policies, procedures — all indexed and ready to query.",
+          "estimated_minutes": 15,
+          "prerequisites": ["1.5"],
+          "path": "phases/phase-2-operators/module-2.1-load-your-business-brain",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["business knowledge base", "category tagging", "batch ingestion", "source attribution"],
+          "weaviate_class": "BusinessDoc"
+        },
+        "2.2": {
+          "id": "2.2",
+          "title": "The Instant Answer Desk",
+          "description": "Build a Q&A tool that answers business questions with source citations. Ask anything about your business and get a verified answer in seconds.",
+          "estimated_minutes": 15,
+          "prerequisites": ["2.1"],
+          "path": "phases/phase-2-operators/module-2.2-instant-answer-desk",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["source citations", "confidence scoring", "grounded responses", "business Q&A"]
+        },
+        "2.3": {
+          "id": "2.3",
+          "title": "Draft It",
+          "description": "AI message drafting with reusable templates and tone control. Write customer replies, follow-ups, and notices using your real business data.",
+          "estimated_minutes": 20,
+          "prerequisites": ["2.1", "2.2"],
+          "path": "phases/phase-2-operators/module-2.3-draft-it",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["message drafting", "template management", "tone control", "context injection"],
+          "weaviate_class": "DraftTemplate"
+        },
+        "2.4": {
+          "id": "2.4",
+          "title": "Sort and Route",
+          "description": "Message triage — classify incoming messages by category, assign priority, and get suggested actions. Your AI dispatcher.",
+          "estimated_minutes": 15,
+          "prerequisites": ["2.1"],
+          "path": "phases/phase-2-operators/module-2.4-sort-and-route",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["message classification", "priority scoring", "action suggestions", "triage patterns"],
+          "weaviate_class": "MessageLog"
+        },
+        "2.5": {
+          "id": "2.5",
+          "title": "Paperwork Machine",
+          "description": "Generate estimates, reports, checklists, and letters from simple prompts. Your rates, your terms, your format — every time.",
+          "estimated_minutes": 20,
+          "prerequisites": ["2.1", "2.3"],
+          "path": "phases/phase-2-operators/module-2.5-paperwork-machine",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["document generation", "template matching", "structured output", "business documents"],
+          "weaviate_class": "DocTemplate"
+        },
+        "2.6": {
+          "id": "2.6",
+          "title": "Chain Reactions",
+          "description": "Multi-step workflows that chain all your tools together. A message comes in — classify, find policy, draft response, log it. One input, full automation.",
+          "estimated_minutes": 20,
+          "prerequisites": ["2.1", "2.2", "2.3", "2.4", "2.5"],
+          "path": "phases/phase-2-operators/module-2.6-chain-reactions",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["workflow chaining", "multi-step automation", "audit logging", "process automation"],
+          "weaviate_class": "WorkflowLog"
+        },
+        "2.7": {
+          "id": "2.7",
+          "title": "Your Operator Dashboard",
+          "description": "Package every Phase 2 tool into a single-launcher business AI toolkit. Health checks, stats, and all tools in one menu. The capstone.",
+          "estimated_minutes": 15,
+          "prerequisites": ["2.1", "2.2", "2.3", "2.4", "2.5", "2.6"],
+          "path": "phases/phase-2-operators/module-2.7-operator-dashboard",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["dashboard design", "tool integration", "system monitoring", "daily operations"]
+        }
+      }
     },
     "phase-3-everyday": {
       "title": "EVERYDAY USERS",
