@@ -1,0 +1,17 @@
+{
+  "user": "default",
+  "started": "2025-01-15 10:00:00",
+  "last_active": "2025-01-15 10:45:00",
+  "current_module": "1.1",
+  "modules_completed": [],
+  "module_history": [
+    {
+      "module": "1.1",
+      "status": "in_progress",
+      "started_at": "2025-01-15 10:00:00",
+      "completed_at": null,
+      "verify_attempts": 0,
+      "verify_last_result": null
+    }
+  ]
+}

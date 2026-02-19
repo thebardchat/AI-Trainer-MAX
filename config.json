@@ -1,0 +1,95 @@
+{
+  "project": "Angel Cloud AI Training Tools",
+  "version": "1.0.0",
+  "base_path": "D:\\Angel_Cloud\\shanebrain-core\\training-tools",
+  "hardware": {
+    "ram_ceiling_gb": 7.4,
+    "module_max_gb": 3.0,
+    "min_free_ram_mb": 2048,
+    "warn_free_ram_mb": 4096
+  },
+  "infrastructure": {
+    "llm": "ollama",
+    "model": "llama3.2:1b",
+    "ollama_url": "http://localhost:11434",
+    "vector_db": "weaviate",
+    "weaviate_url": "http://localhost:8080"
+  },
+  "phases": {
+    "phase-1-builders": {
+      "title": "BUILDERS",
+      "status": "active",
+      "target_audience": "Developers and technical self-learners",
+      "modules": {
+        "1.1": {
+          "id": "1.1",
+          "title": "Your First Local LLM",
+          "description": "Install Ollama, pull your first model, run your first local inference. No cloud. No API key. Just your machine talking back to you.",
+          "estimated_minutes": 15,
+          "prerequisites": [],
+          "path": "phases/phase-1-builders/module-1.1-first-local-llm",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["ollama install", "model pulling", "CLI inference", "local-first mindset"]
+        },
+        "1.2": {
+          "id": "1.2",
+          "title": "Vectors Made Simple",
+          "description": "Set up Weaviate, turn plain text into vectors, and run your first semantic search. Think of it as giving your AI a filing cabinet with a brain.",
+          "estimated_minutes": 15,
+          "prerequisites": ["1.1"],
+          "path": "phases/phase-1-builders/module-1.2-vectors",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["weaviate setup", "embeddings", "semantic search", "vector storage"]
+        },
+        "1.3": {
+          "id": "1.3",
+          "title": "Build Your Brain",
+          "description": "Connect Ollama + Weaviate into a RAG pipeline. Your AI stops guessing and starts answering from YOUR documents.",
+          "estimated_minutes": 15,
+          "prerequisites": ["1.1", "1.2"],
+          "path": "phases/phase-1-builders/module-1.3-build-your-brain",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["RAG pipeline", "document loading", "context injection", "personal AI"]
+        },
+        "1.4": {
+          "id": "1.4",
+          "title": "Prompt Engineering for Local Models",
+          "description": "Small models need precise instructions. Learn to write prompts that get real answers from a 1-billion parameter model running on your own hardware.",
+          "estimated_minutes": 15,
+          "prerequisites": ["1.1"],
+          "path": "phases/phase-1-builders/module-1.4-prompt-engineering",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["prompt structure", "system prompts", "temperature control", "small model optimization"]
+        },
+        "1.5": {
+          "id": "1.5",
+          "title": "Ship It",
+          "description": "Package everything into a single .bat launcher. Double-click and your personal AI boots up. That's sovereignty.",
+          "estimated_minutes": 15,
+          "prerequisites": ["1.1", "1.2", "1.3", "1.4"],
+          "path": "phases/phase-1-builders/module-1.5-ship-it",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["bat scripting", "health checks", "launcher design", "packaging"]
+        }
+      }
+    },
+    "phase-2-operators": {
+      "title": "OPERATORS",
+      "status": "coming_soon",
+      "target_audience": "Small business owners, dispatchers, hustlers",
+      "modules": {}
+    },
+    "phase-3-everyday": {
+      "title": "EVERYDAY USERS",
+      "status": "coming_soon",
+      "target_audience": "The 800 million — non-technical Windows users",
+      "modules": {}
+    },
+    "phase-4-legacy": {
+      "title": "LEGACY",
+      "status": "coming_soon",
+      "target_audience": "Family, next generation, YourNameBrain users",
+      "modules": {}
+    }
+  }
+}
