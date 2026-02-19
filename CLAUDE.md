@@ -5,7 +5,7 @@
 AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Cloud ecosystem. It teaches people how to build, run, and own local AI — starting from zero. Every module runs on Windows .bat scripts, targets 7.4GB RAM hardware, and has zero cloud dependencies in Phase 1.
 
 **Repo:** https://github.com/thebardchat/AI-Trainer-MAX.git
-**Base path on local machine:** D:\Angel_Cloud\shanebrain-core\training-tools\
+**Base path on local machine:** /media/shane/ANGEL_CLOUD/AI-Trainer-MAX/
 **Owner:** Shane — Alabama-based sole provider, father of 5 sons, building digital solutions for generational legacy.
 
 ## Tech Stack
