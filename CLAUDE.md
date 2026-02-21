@@ -16,6 +16,8 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 - **Scripting:** Windows .bat (CMD compatible — no PowerShell-only commands)
 - **Content Format:** Markdown (.md files rendered via `type` command)
 - **JSON Handling:** Python stdlib only (urllib.request, json) — zero pip installs
+- **MCP Server:** ShaneBrain MCP (localhost:8100) — 19 tools via streamable HTTP (Phase 3)
+- **MCP Client:** shared/utils/mcp-call.py (stdlib only — urllib.request + json)
 - **Dependencies:** curl (built into Windows 10+), Python 3.x in PATH
 
 ## Hardware Constraints — CRITICAL
@@ -41,15 +43,31 @@ AI-Trainer-MAX/
 │   │   ├── module-1.3-build-your-brain/
 │   │   ├── module-1.4-prompt-engineering/
 │   │   └── module-1.5-ship-it/
-│   ├── phase-2-operators/           # NEXT — business automation
-│   ├── phase-3-everyday/            # PLANNED — 800M Windows users
+│   ├── phase-2-operators/           # COMPLETE — 7 modules
+│   │   ├── module-2.1-load-your-business-brain/
+│   │   ├── module-2.2-instant-answer-desk/
+│   │   ├── module-2.3-draft-it/
+│   │   ├── module-2.4-sort-and-route/
+│   │   ├── module-2.5-paperwork-machine/
+│   │   ├── module-2.6-chain-reactions/
+│   │   └── module-2.7-operator-dashboard/
+│   ├── phase-3-everyday/            # COMPLETE — 7 MCP-powered modules
+│   │   ├── module-3.1-your-private-vault/
+│   │   ├── module-3.2-ask-your-vault/
+│   │   ├── module-3.3-write-it-right/
+│   │   ├── module-3.4-lock-it-down/
+│   │   ├── module-3.5-daily-briefing/
+│   │   ├── module-3.6-digital-footprint/
+│   │   └── module-3.7-family-dashboard/
 │   └── phase-4-legacy/              # PLANNED — YourNameBrain digital inheritance
 ├── progress/
 │   └── user-progress.json
 └── shared/
     ├── ascii-art/
     └── utils/
-        └── health-check.bat
+        ├── health-check.bat
+        ├── mcp-call.py              # MCP client helper (stdlib only)
+        └── mcp-health-check.bat     # MCP server health check
 ```
 
 ## Module File Pattern
@@ -94,7 +112,23 @@ Each module that creates a Weaviate class uses a UNIQUE class name to avoid conf
 - Module 1.2: `Document`
 - Module 1.3: `BrainDoc`
 - Module 1.5: `MyBrain`
+- Module 2.1: `BusinessDoc`
+- Module 2.3: `DraftTemplate`
+- Module 2.4: `MessageLog`
+- Module 2.5: `DocTemplate`
+- Module 2.6: `WorkflowLog`
+- Phase 3 uses MCP server collections: `PersonalDoc`, `DailyNote`, `PersonalDraft`, `SecurityLog`, `PrivacyAudit`
 - Future modules should follow this pattern — never reuse a class name
+
+### Phase 3 MCP Tools
+Phase 3 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP server tools:
+- `vault_add`, `vault_search`, `vault_list_categories` — Personal vault storage
+- `chat_with_shanebrain` — RAG Q&A with Ollama
+- `draft_create`, `draft_search` — AI drafting with vault context
+- `security_log_search`, `privacy_audit_search` — Security auditing
+- `daily_note_add`, `daily_note_search`, `daily_briefing` — Journaling + AI briefings
+- `system_health` — Service status + collection counts
+- `search_knowledge`, `get_top_friends` — Knowledge base + social
 
 ## Writing Style for Lesson Content
 
@@ -111,9 +145,9 @@ Each module that creates a Weaviate class uses a UNIQUE class name to avoid conf
 
 | Phase | Audience | Status | Focus |
 |-------|----------|--------|-------|
-| Phase 1: BUILDERS | Developers, self-learners | ✅ COMPLETE | Local AI with Ollama/RAG |
-| Phase 2: OPERATORS | Small business owners, dispatchers | 🔜 NEXT | Business automation |
-| Phase 3: EVERYDAY | 800M non-technical Windows users | 📋 PLANNED | AI literacy + security awareness |
+| Phase 1: BUILDERS | Developers, self-learners | ✅ COMPLETE (5 modules) | Local AI with Ollama/RAG |
+| Phase 2: OPERATORS | Small business owners, dispatchers | ✅ COMPLETE (7 modules) | Business automation |
+| Phase 3: EVERYDAY | 800M non-technical Windows users | ✅ COMPLETE (7 modules) | MCP-powered personal AI tools |
 | Phase 4: LEGACY | Families, next generation | 📋 PLANNED | YourNameBrain digital inheritance |
 
 ## Mission Context
