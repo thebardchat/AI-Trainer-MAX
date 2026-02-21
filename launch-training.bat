@@ -122,6 +122,7 @@ if not exist "%PROGRESS_FILE%" (
 :: Check completed modules (simple findstr-based check)
 set "M11=[ ]" & set "M12=[ ]" & set "M13=[ ]" & set "M14=[ ]" & set "M15=[ ]"
 set "M21=[ ]" & set "M22=[ ]" & set "M23=[ ]" & set "M24=[ ]" & set "M25=[ ]" & set "M26=[ ]" & set "M27=[ ]"
+set "M31=[ ]" & set "M32=[ ]" & set "M33=[ ]" & set "M34=[ ]" & set "M35=[ ]" & set "M36=[ ]" & set "M37=[ ]"
 findstr /c:"1.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M11=[✓]"
 findstr /c:"1.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M12=[✓]"
 findstr /c:"1.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M13=[✓]"
@@ -134,6 +135,13 @@ findstr /c:"2.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M2
 findstr /c:"2.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M25=[✓]"
 findstr /c:"2.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M26=[✓]"
 findstr /c:"2.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M27=[✓]"
+findstr /c:"3.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M31=[✓]"
+findstr /c:"3.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M32=[✓]"
+findstr /c:"3.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M33=[✓]"
+findstr /c:"3.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M34=[✓]"
+findstr /c:"3.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M35=[✓]"
+findstr /c:"3.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M36=[✓]"
+findstr /c:"3.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M37=[✓]"
 
 :: ============================================================
 :: MAIN MENU
@@ -158,14 +166,23 @@ echo     %M25% 2.5  Paperwork Machine             (20 min)
 echo     %M26% 2.6  Chain Reactions                (20 min)
 echo     %M27% 2.7  Your Operator Dashboard        (15 min)
 echo.
-echo   PHASE 3 — EVERYDAY   [93m[COMING SOON][0m
+echo   PHASE 3 — EVERYDAY  [92m[UNLOCKED — MCP][0m
+echo   ─────────────────────────────────────
+echo     %M31% 3.1  Your Private Vault         (15 min)
+echo     %M32% 3.2  Ask Your Vault             (15 min)
+echo     %M33% 3.3  Write It Right             (15 min)
+echo     %M34% 3.4  Lock It Down               (15 min)
+echo     %M35% 3.5  Daily Briefing             (15 min)
+echo     %M36% 3.6  Digital Footprint          (15 min)
+echo     %M37% 3.7  Family Dashboard           (20 min)
+echo.
 echo   PHASE 4 — LEGACY     [93m[COMING SOON][0m
 echo.
 echo   ─────────────────────────────────────
 echo     H  Health Check     R  Reset Progress
 echo     Q  Quit
 echo.
-set /p "CHOICE=  Select module (1.1-2.7) or option: "
+set /p "CHOICE=  Select module (1.1-3.7) or option: "
 
 if "%CHOICE%"=="1.1" goto mod11
 if "%CHOICE%"=="1.2" goto mod12
@@ -179,6 +196,13 @@ if "%CHOICE%"=="2.4" goto mod24
 if "%CHOICE%"=="2.5" goto mod25
 if "%CHOICE%"=="2.6" goto mod26
 if "%CHOICE%"=="2.7" goto mod27
+if "%CHOICE%"=="3.1" goto mod31
+if "%CHOICE%"=="3.2" goto mod32
+if "%CHOICE%"=="3.3" goto mod33
+if "%CHOICE%"=="3.4" goto mod34
+if "%CHOICE%"=="3.5" goto mod35
+if "%CHOICE%"=="3.6" goto mod36
+if "%CHOICE%"=="3.7" goto mod37
 if /i "%CHOICE%"=="H" goto healthcheck
 if /i "%CHOICE%"=="R" goto resetprogress
 if /i "%CHOICE%"=="Q" goto quit
@@ -235,6 +259,34 @@ goto run_module
 
 :mod27
 set "MOD_DIR=%BASE_DIR%phases\phase-2-operators\module-2.7-operator-dashboard"
+goto run_module
+
+:mod31
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.1-your-private-vault"
+goto run_module
+
+:mod32
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.2-ask-your-vault"
+goto run_module
+
+:mod33
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.3-write-it-right"
+goto run_module
+
+:mod34
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.4-lock-it-down"
+goto run_module
+
+:mod35
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.5-daily-briefing"
+goto run_module
+
+:mod36
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.6-digital-footprint"
+goto run_module
+
+:mod37
+set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.7-family-dashboard"
 goto run_module
 
 :run_module
