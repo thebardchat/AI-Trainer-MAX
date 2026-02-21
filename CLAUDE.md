@@ -8,6 +8,38 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 **Base path on local machine:** /media/shane/ANGEL_CLOUD/AI-Trainer-MAX/
 **Owner:** Shane — Alabama-based sole provider, father of 5 sons, building digital solutions for generational legacy.
 
+## Project State (February 21, 2026)
+
+### Completed
+- **Phase 1 BUILDERS:** 5 modules, complete, pushed to GitHub
+- **Phase 2 OPERATORS:** 7 modules, complete, pushed to GitHub
+- **MCP server:** 19 tools live at localhost:8100 (shanebrain-mcp Docker container)
+- **shared/utils/mcp-call.py:** MCP client helper (stdlib only, zero pip installs)
+- **shared/utils/mcp-health-check.bat:** MCP server health checker
+
+### In Progress
+- **Phase 3 EVERYDAY USERS:** Directories created, no module files yet
+- **Phase 4 LEGACY:** Empty, planned after Phase 3
+
+### Architecture Decisions
+- Phase 1-2 use direct curl to Ollama/Weaviate
+- Phase 3-4 use MCP tools via mcp-call.py wrapper
+- MCP server lives in shanebrain-core repo on RAID (`/mnt/shanebrain-raid/shanebrain-core/`)
+- Training modules live in THIS repo on external drive (`/media/shane/ANGEL_CLOUD/AI-Trainer-MAX/`)
+- These are TWO SEPARATE repos — do NOT mix them
+- All training content builds HERE in AI-Trainer-MAX
+- MCP server is a dependency, not something we build here
+
+## Repository Boundaries — SINGLE SOURCE OF TRUTH
+
+| Repo | URL | Purpose |
+|------|-----|---------|
+| AI-Trainer-MAX | https://github.com/thebardchat/AI-Trainer-MAX | Training modules, lessons, exercises, launcher |
+| shanebrain-core | https://github.com/thebardchat/shanebrain-core | MCP server, ShaneBrain API, Docker services |
+
+**NEVER** build training modules in shanebrain-core.
+**NEVER** build MCP server code in AI-Trainer-MAX.
+
 ## Tech Stack
 
 - **LLM Runtime:** Ollama (localhost:11434)
@@ -51,7 +83,7 @@ AI-Trainer-MAX/
 │   │   ├── module-2.5-paperwork-machine/
 │   │   ├── module-2.6-chain-reactions/
 │   │   └── module-2.7-operator-dashboard/
-│   ├── phase-3-everyday/            # COMPLETE — 7 MCP-powered modules
+│   ├── phase-3-everyday/            # IN PROGRESS — directories created, no module files yet
 │   │   ├── module-3.1-your-private-vault/
 │   │   ├── module-3.2-ask-your-vault/
 │   │   ├── module-3.3-write-it-right/
@@ -147,7 +179,7 @@ Phase 3 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP server too
 |-------|----------|--------|-------|
 | Phase 1: BUILDERS | Developers, self-learners | ✅ COMPLETE (5 modules) | Local AI with Ollama/RAG |
 | Phase 2: OPERATORS | Small business owners, dispatchers | ✅ COMPLETE (7 modules) | Business automation |
-| Phase 3: EVERYDAY | 800M non-technical Windows users | ✅ COMPLETE (7 modules) | MCP-powered personal AI tools |
+| Phase 3: EVERYDAY | 800M non-technical Windows users | 🔧 IN PROGRESS (dirs only) | MCP-powered personal AI tools |
 | Phase 4: LEGACY | Families, next generation | 📋 PLANNED | YourNameBrain digital inheritance |
 
 ## Mission Context
