@@ -13,13 +13,24 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 ### Completed
 - **Phase 1 BUILDERS:** 5 modules, complete, pushed to GitHub
 - **Phase 2 OPERATORS:** 7 modules, complete, pushed to GitHub
+- **Phase 3 EVERYDAY USERS:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat, pushed to GitHub
 - **MCP server:** 19 tools live at localhost:8100 (shanebrain-mcp Docker container)
 - **shared/utils/mcp-call.py:** MCP client helper (stdlib only, zero pip installs)
 - **shared/utils/mcp-health-check.bat:** MCP server health checker
 
 ### In Progress
-- **Phase 3 EVERYDAY USERS:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
-- **Phase 4 LEGACY:** Empty, planned after Phase 3
+- **Phase 4 LEGACY:** 7 modules planned, building now
+
+### Phase 4 Module Specs
+| Module | Title | MCP Tools | Purpose |
+|--------|-------|-----------|---------|
+| 4.1 | What Is a Brain? | `search_knowledge`, `system_health` | Explain personal AI brains, show ShaneBrain as living example |
+| 4.2 | Feed Your Brain | `add_knowledge`, `vault_add` | Add knowledge, values, and memories to your brain |
+| 4.3 | Talk to Your Brain | `chat_with_shanebrain`, `search_knowledge` | First conversation with your own AI, understanding RAG |
+| 4.4 | Your Daily Companion | `daily_note_add`, `daily_note_search`, `daily_briefing` | Journaling and reflection habit with AI |
+| 4.5 | Write Your Story | `draft_create`, `vault_search` | Draft letters, stories, messages to family |
+| 4.6 | Guard Your Legacy | `security_log_search`, `privacy_audit_search`, `system_health` | Protect your data, understand who sees what |
+| 4.7 | Pass It On | `add_knowledge`, `vault_add`, `chat_with_shanebrain` | Capstone: build a YourNameBrain from scratch |
 
 ### Architecture Decisions
 - Phase 1-2 use direct curl to Ollama/Weaviate
@@ -29,6 +40,7 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 - These are TWO SEPARATE repos — do NOT mix them
 - All training content builds HERE in AI-Trainer-MAX
 - MCP server is a dependency, not something we build here
+- Phase 4 tone is legacy-focused — family metaphors, what you leave behind. Module 4.7 is the capstone where users build their own YourNameBrain.
 
 ## Repository Boundaries — SINGLE SOURCE OF TRUTH
 
@@ -91,7 +103,14 @@ AI-Trainer-MAX/
 │   │   ├── module-3.5-daily-briefing/
 │   │   ├── module-3.6-digital-footprint/
 │   │   └── module-3.7-family-dashboard/
-│   └── phase-4-legacy/              # PLANNED — YourNameBrain digital inheritance
+│   └── phase-4-legacy/              # IN PROGRESS — 7 modules, YourNameBrain digital inheritance
+│       ├── module-4.1-what-is-a-brain/
+│       ├── module-4.2-feed-your-brain/
+│       ├── module-4.3-talk-to-your-brain/
+│       ├── module-4.4-your-daily-companion/
+│       ├── module-4.5-write-your-story/
+│       ├── module-4.6-guard-your-legacy/
+│       └── module-4.7-pass-it-on/
 ├── progress/
 │   └── user-progress.json
 └── shared/
@@ -152,8 +171,8 @@ Each module that creates a Weaviate class uses a UNIQUE class name to avoid conf
 - Phase 3 uses MCP server collections: `PersonalDoc`, `DailyNote`, `PersonalDraft`, `SecurityLog`, `PrivacyAudit`
 - Future modules should follow this pattern — never reuse a class name
 
-### Phase 3 MCP Tools
-Phase 3 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP server tools:
+### Phase 3-4 MCP Tools
+Phase 3 and 4 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP server tools:
 - `vault_add`, `vault_search`, `vault_list_categories` — Personal vault storage
 - `chat_with_shanebrain` — RAG Q&A with Ollama
 - `draft_create`, `draft_search` — AI drafting with vault context
@@ -161,6 +180,7 @@ Phase 3 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP server too
 - `daily_note_add`, `daily_note_search`, `daily_briefing` — Journaling + AI briefings
 - `system_health` — Service status + collection counts
 - `search_knowledge`, `get_top_friends` — Knowledge base + social
+- `add_knowledge` — Add entries to the legacy knowledge base (Phase 4)
 
 ## Writing Style for Lesson Content
 
@@ -180,7 +200,7 @@ Phase 3 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP server too
 | Phase 1: BUILDERS | Developers, self-learners | ✅ COMPLETE (5 modules) | Local AI with Ollama/RAG |
 | Phase 2: OPERATORS | Small business owners, dispatchers | ✅ COMPLETE (7 modules) | Business automation |
 | Phase 3: EVERYDAY | 800M non-technical Windows users | ✅ COMPLETE (7 modules) | MCP-powered personal AI tools |
-| Phase 4: LEGACY | Families, next generation | 📋 PLANNED | YourNameBrain digital inheritance |
+| Phase 4: LEGACY | Families, next generation | 🔧 IN PROGRESS (7 modules) | YourNameBrain digital inheritance |
 
 ## Mission Context
 
@@ -215,6 +235,20 @@ wmic os get FreePhysicalMemory /value
 5. Ensure exercise completes in under 15 minutes
 6. Ensure verify.bat returns clean PASS/FAIL with no ambiguity
 7. Use a unique Weaviate class name if the module creates one
+
+## Development Standards
+
+### Document Before You Build (Mandatory)
+Every new phase, feature, or architectural change MUST follow this sequence:
+1. UPDATE CLAUDE.md with the current project state — what's complete, what's in progress, what's planned
+2. UPDATE config.json with module specs if adding modules
+3. SHOW the changes for review before proceeding
+4. THEN build
+
+Never start writing lesson.md, exercise.bat, verify.bat, or hints.md files until CLAUDE.md reflects where the project is RIGHT NOW. This prevents session drift — where different Claude Code sessions build in different directions because they don't know what came before.
+
+### Why This Matters
+Claude Code sessions start cold. CLAUDE.md is the ONLY continuity between sessions. If it's stale, the next session guesses. If it's current, the next session picks up exactly where the last one left off.
 
 ## Do NOT
 
