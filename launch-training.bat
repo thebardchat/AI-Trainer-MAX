@@ -123,6 +123,7 @@ if not exist "%PROGRESS_FILE%" (
 set "M11=[ ]" & set "M12=[ ]" & set "M13=[ ]" & set "M14=[ ]" & set "M15=[ ]"
 set "M21=[ ]" & set "M22=[ ]" & set "M23=[ ]" & set "M24=[ ]" & set "M25=[ ]" & set "M26=[ ]" & set "M27=[ ]"
 set "M31=[ ]" & set "M32=[ ]" & set "M33=[ ]" & set "M34=[ ]" & set "M35=[ ]" & set "M36=[ ]" & set "M37=[ ]"
+set "M41=[ ]" & set "M42=[ ]" & set "M43=[ ]" & set "M44=[ ]" & set "M45=[ ]" & set "M46=[ ]" & set "M47=[ ]"
 findstr /c:"1.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M11=[✓]"
 findstr /c:"1.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M12=[✓]"
 findstr /c:"1.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M13=[✓]"
@@ -142,6 +143,13 @@ findstr /c:"3.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M3
 findstr /c:"3.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M35=[✓]"
 findstr /c:"3.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M36=[✓]"
 findstr /c:"3.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M37=[✓]"
+findstr /c:"4.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M41=[✓]"
+findstr /c:"4.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M42=[✓]"
+findstr /c:"4.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M43=[✓]"
+findstr /c:"4.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M44=[✓]"
+findstr /c:"4.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M45=[✓]"
+findstr /c:"4.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M46=[✓]"
+findstr /c:"4.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M47=[✓]"
 
 :: ============================================================
 :: MAIN MENU
@@ -176,13 +184,21 @@ echo     %M35% 3.5  Daily Briefing             (15 min)
 echo     %M36% 3.6  Digital Footprint          (15 min)
 echo     %M37% 3.7  Family Dashboard           (20 min)
 echo.
-echo   PHASE 4 — LEGACY     [93m[COMING SOON][0m
+echo   PHASE 4 — LEGACY  [92m[UNLOCKED — MCP][0m
+echo   ─────────────────────────────────────
+echo     %M41% 4.1  What Is a Brain?          (15 min)
+echo     %M42% 4.2  Feed Your Brain           (15 min)
+echo     %M43% 4.3  Talk to Your Brain        (15 min)
+echo     %M44% 4.4  Your Daily Companion      (15 min)
+echo     %M45% 4.5  Write Your Story          (15 min)
+echo     %M46% 4.6  Guard Your Legacy         (15 min)
+echo     %M47% 4.7  Pass It On (Capstone)     (20 min)
 echo.
 echo   ─────────────────────────────────────
 echo     H  Health Check     R  Reset Progress
 echo     Q  Quit
 echo.
-set /p "CHOICE=  Select module (1.1-3.7) or option: "
+set /p "CHOICE=  Select module (1.1-4.7) or option: "
 
 if "%CHOICE%"=="1.1" goto mod11
 if "%CHOICE%"=="1.2" goto mod12
@@ -203,6 +219,13 @@ if "%CHOICE%"=="3.4" goto mod34
 if "%CHOICE%"=="3.5" goto mod35
 if "%CHOICE%"=="3.6" goto mod36
 if "%CHOICE%"=="3.7" goto mod37
+if "%CHOICE%"=="4.1" goto mod41
+if "%CHOICE%"=="4.2" goto mod42
+if "%CHOICE%"=="4.3" goto mod43
+if "%CHOICE%"=="4.4" goto mod44
+if "%CHOICE%"=="4.5" goto mod45
+if "%CHOICE%"=="4.6" goto mod46
+if "%CHOICE%"=="4.7" goto mod47
 if /i "%CHOICE%"=="H" goto healthcheck
 if /i "%CHOICE%"=="R" goto resetprogress
 if /i "%CHOICE%"=="Q" goto quit
@@ -287,6 +310,34 @@ goto run_module
 
 :mod37
 set "MOD_DIR=%BASE_DIR%phases\phase-3-everyday\module-3.7-family-dashboard"
+goto run_module
+
+:mod41
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.1-what-is-a-brain"
+goto run_module
+
+:mod42
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.2-feed-your-brain"
+goto run_module
+
+:mod43
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.3-talk-to-your-brain"
+goto run_module
+
+:mod44
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.4-your-daily-companion"
+goto run_module
+
+:mod45
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.5-write-your-story"
+goto run_module
+
+:mod46
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.6-guard-your-legacy"
+goto run_module
+
+:mod47
+set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.7-pass-it-on"
 goto run_module
 
 :run_module

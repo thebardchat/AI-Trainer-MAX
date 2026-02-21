@@ -18,8 +18,8 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 - **shared/utils/mcp-call.py:** MCP client helper (stdlib only, zero pip installs)
 - **shared/utils/mcp-health-check.bat:** MCP server health checker
 
-### In Progress
-- **Phase 4 LEGACY:** 7 modules planned, building now
+### Completed (cont.)
+- **Phase 4 LEGACY:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
 
 ### Phase 4 Module Specs
 | Module | Title | MCP Tools | Purpose |
@@ -103,7 +103,7 @@ AI-Trainer-MAX/
 │   │   ├── module-3.5-daily-briefing/
 │   │   ├── module-3.6-digital-footprint/
 │   │   └── module-3.7-family-dashboard/
-│   └── phase-4-legacy/              # IN PROGRESS — 7 modules, YourNameBrain digital inheritance
+│   └── phase-4-legacy/              # COMPLETE — 7 modules, YourNameBrain digital inheritance
 │       ├── module-4.1-what-is-a-brain/
 │       ├── module-4.2-feed-your-brain/
 │       ├── module-4.3-talk-to-your-brain/
@@ -200,7 +200,7 @@ Phase 3 and 4 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP serv
 | Phase 1: BUILDERS | Developers, self-learners | ✅ COMPLETE (5 modules) | Local AI with Ollama/RAG |
 | Phase 2: OPERATORS | Small business owners, dispatchers | ✅ COMPLETE (7 modules) | Business automation |
 | Phase 3: EVERYDAY | 800M non-technical Windows users | ✅ COMPLETE (7 modules) | MCP-powered personal AI tools |
-| Phase 4: LEGACY | Families, next generation | 🔧 IN PROGRESS (7 modules) | YourNameBrain digital inheritance |
+| Phase 4: LEGACY | Families, next generation | ✅ COMPLETE (7 modules) | YourNameBrain digital inheritance |
 
 ## Mission Context
 

@@ -242,9 +242,88 @@
     },
     "phase-4-legacy": {
       "title": "LEGACY",
-      "status": "coming_soon",
+      "status": "active",
       "target_audience": "Family, next generation, YourNameBrain users",
-      "modules": {}
+      "mcp_server": "http://localhost:8100/mcp",
+      "modules": {
+        "4.1": {
+          "id": "4.1",
+          "title": "What Is a Brain?",
+          "description": "Understand what a personal AI brain is and why it matters. See ShaneBrain as a living example — knowledge, memory, and personality stored locally.",
+          "estimated_minutes": 15,
+          "prerequisites": [],
+          "path": "phases/phase-4-legacy/module-4.1-what-is-a-brain",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["AI brain concept", "system exploration", "knowledge search", "legacy mindset"],
+          "mcp_tools": ["search_knowledge", "system_health"]
+        },
+        "4.2": {
+          "id": "4.2",
+          "title": "Feed Your Brain",
+          "description": "Add your own knowledge, values, and memories to your AI brain. Family wisdom, life lessons, the things you want remembered.",
+          "estimated_minutes": 15,
+          "prerequisites": ["4.1"],
+          "path": "phases/phase-4-legacy/module-4.2-feed-your-brain",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["knowledge entry", "vault storage", "value encoding", "personal memory"],
+          "mcp_tools": ["add_knowledge", "vault_add"]
+        },
+        "4.3": {
+          "id": "4.3",
+          "title": "Talk to Your Brain",
+          "description": "Have your first real conversation with your personal AI. Ask it questions and watch it answer from YOUR knowledge — not the internet.",
+          "estimated_minutes": 15,
+          "prerequisites": ["4.2"],
+          "path": "phases/phase-4-legacy/module-4.3-talk-to-your-brain",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["RAG conversation", "personal AI chat", "knowledge retrieval", "context awareness"],
+          "mcp_tools": ["chat_with_shanebrain", "search_knowledge"]
+        },
+        "4.4": {
+          "id": "4.4",
+          "title": "Your Daily Companion",
+          "description": "Build a journaling and reflection habit with your AI. Record your days, track your moods, and let the AI brief you each morning.",
+          "estimated_minutes": 15,
+          "prerequisites": [],
+          "path": "phases/phase-4-legacy/module-4.4-your-daily-companion",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["daily journaling", "mood tracking", "AI briefings", "reflection habit"],
+          "mcp_tools": ["daily_note_add", "daily_note_search", "daily_briefing"]
+        },
+        "4.5": {
+          "id": "4.5",
+          "title": "Write Your Story",
+          "description": "Use your AI brain to draft letters, stories, and messages to the people who matter most. Your voice, your data, your words — preserved.",
+          "estimated_minutes": 15,
+          "prerequisites": ["4.2"],
+          "path": "phases/phase-4-legacy/module-4.5-write-your-story",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["legacy writing", "AI drafting", "vault context", "personal storytelling"],
+          "mcp_tools": ["draft_create", "vault_search"]
+        },
+        "4.6": {
+          "id": "4.6",
+          "title": "Guard Your Legacy",
+          "description": "Protect what you built. Audit security logs, review privacy trails, and understand exactly who can see your family's data.",
+          "estimated_minutes": 15,
+          "prerequisites": [],
+          "path": "phases/phase-4-legacy/module-4.6-guard-your-legacy",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["legacy security", "privacy auditing", "data protection", "system monitoring"],
+          "mcp_tools": ["security_log_search", "privacy_audit_search", "system_health"]
+        },
+        "4.7": {
+          "id": "4.7",
+          "title": "Pass It On",
+          "description": "The capstone. Build your own YourNameBrain from scratch — embed family values, add personal memories, test it, and prove it knows you. Your name. Your brain. Your legacy.",
+          "estimated_minutes": 20,
+          "prerequisites": ["4.1", "4.2", "4.3", "4.4", "4.5", "4.6"],
+          "path": "phases/phase-4-legacy/module-4.7-pass-it-on",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["YourNameBrain", "brain building", "legacy creation", "full integration"],
+          "mcp_tools": ["add_knowledge", "vault_add", "chat_with_shanebrain"]
+        }
+      }
     }
   }
 }
