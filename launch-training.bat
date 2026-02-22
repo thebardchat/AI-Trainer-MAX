@@ -124,6 +124,7 @@ set "M11=[ ]" & set "M12=[ ]" & set "M13=[ ]" & set "M14=[ ]" & set "M15=[ ]"
 set "M21=[ ]" & set "M22=[ ]" & set "M23=[ ]" & set "M24=[ ]" & set "M25=[ ]" & set "M26=[ ]" & set "M27=[ ]"
 set "M31=[ ]" & set "M32=[ ]" & set "M33=[ ]" & set "M34=[ ]" & set "M35=[ ]" & set "M36=[ ]" & set "M37=[ ]"
 set "M41=[ ]" & set "M42=[ ]" & set "M43=[ ]" & set "M44=[ ]" & set "M45=[ ]" & set "M46=[ ]" & set "M47=[ ]"
+set "M51=[ ]" & set "M52=[ ]" & set "M53=[ ]" & set "M54=[ ]" & set "M55=[ ]" & set "M56=[ ]" & set "M57=[ ]" & set "M58=[ ]" & set "M59=[ ]" & set "M510=[ ]"
 findstr /c:"1.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M11=[✓]"
 findstr /c:"1.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M12=[✓]"
 findstr /c:"1.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M13=[✓]"
@@ -150,6 +151,16 @@ findstr /c:"4.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M4
 findstr /c:"4.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M45=[✓]"
 findstr /c:"4.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M46=[✓]"
 findstr /c:"4.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M47=[✓]"
+findstr /c:"5.1" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M51=[✓]"
+findstr /c:"5.2" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M52=[✓]"
+findstr /c:"5.3" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M53=[✓]"
+findstr /c:"5.4" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M54=[✓]"
+findstr /c:"5.5" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M55=[✓]"
+findstr /c:"5.6" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M56=[✓]"
+findstr /c:"5.7" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M57=[✓]"
+findstr /c:"5.8" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M58=[✓]"
+findstr /c:"5.9" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M59=[✓]"
+findstr /c:"5.10" "%PROGRESS_FILE%" | findstr /c:"completed" >nul 2>&1 && set "M510=[✓]"
 
 :: ============================================================
 :: MAIN MENU
@@ -194,11 +205,24 @@ echo     %M45% 4.5  Write Your Story          (15 min)
 echo     %M46% 4.6  Guard Your Legacy         (15 min)
 echo     %M47% 4.7  Pass It On (Capstone)     (20 min)
 echo.
+echo   PHASE 5 — MULTIPLIERS  [92m[UNLOCKED — MCP][0m
+echo   ─────────────────────────────────────
+echo     %M51% 5.1   Lock the Gates            (15 min)  [DEFENDERS]
+echo     %M52% 5.2   Threat Spotter            (15 min)  [DEFENDERS]
+echo     %M53% 5.3   Backup and Restore        (20 min)  [DEFENDERS]
+echo     %M54% 5.4   Teach the Teacher         (15 min)  [TEACHERS]
+echo     %M55% 5.5   Workshop in a Box         (20 min)  [TEACHERS]
+echo     %M56% 5.6   Brain Export              (15 min)  [CONNECTORS]
+echo     %M57% 5.7   Family Mesh               (20 min)  [CONNECTORS]
+echo     %M58% 5.8   Under the Hood            (15 min)  [BUILDERS v2]
+echo     %M59% 5.9   Prompt Chains             (20 min)  [BUILDERS v2]
+echo     %M510% 5.10  The Multiplier (Capstone) (20 min)  [CAPSTONE]
+echo.
 echo   ─────────────────────────────────────
 echo     H  Health Check     R  Reset Progress
 echo     Q  Quit
 echo.
-set /p "CHOICE=  Select module (1.1-4.7) or option: "
+set /p "CHOICE=  Select module (1.1-5.10) or option: "
 
 if "%CHOICE%"=="1.1" goto mod11
 if "%CHOICE%"=="1.2" goto mod12
@@ -226,6 +250,16 @@ if "%CHOICE%"=="4.4" goto mod44
 if "%CHOICE%"=="4.5" goto mod45
 if "%CHOICE%"=="4.6" goto mod46
 if "%CHOICE%"=="4.7" goto mod47
+if "%CHOICE%"=="5.1" goto mod51
+if "%CHOICE%"=="5.2" goto mod52
+if "%CHOICE%"=="5.3" goto mod53
+if "%CHOICE%"=="5.4" goto mod54
+if "%CHOICE%"=="5.5" goto mod55
+if "%CHOICE%"=="5.6" goto mod56
+if "%CHOICE%"=="5.7" goto mod57
+if "%CHOICE%"=="5.8" goto mod58
+if "%CHOICE%"=="5.9" goto mod59
+if "%CHOICE%"=="5.10" goto mod510
 if /i "%CHOICE%"=="H" goto healthcheck
 if /i "%CHOICE%"=="R" goto resetprogress
 if /i "%CHOICE%"=="Q" goto quit
@@ -338,6 +372,46 @@ goto run_module
 
 :mod47
 set "MOD_DIR=%BASE_DIR%phases\phase-4-legacy\module-4.7-pass-it-on"
+goto run_module
+
+:mod51
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.1-lock-the-gates"
+goto run_module
+
+:mod52
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.2-threat-spotter"
+goto run_module
+
+:mod53
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.3-backup-and-restore"
+goto run_module
+
+:mod54
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.4-teach-the-teacher"
+goto run_module
+
+:mod55
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.5-workshop-in-a-box"
+goto run_module
+
+:mod56
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.6-brain-export"
+goto run_module
+
+:mod57
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.7-family-mesh"
+goto run_module
+
+:mod58
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.8-under-the-hood"
+goto run_module
+
+:mod59
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.9-prompt-chains"
+goto run_module
+
+:mod510
+set "MOD_DIR=%BASE_DIR%phases\phase-5-multipliers\module-5.10-the-multiplier"
 goto run_module
 
 :run_module

@@ -8,39 +8,47 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 **Base path on local machine:** /media/shane/ANGEL_CLOUD/AI-Trainer-MAX/
 **Owner:** Shane — Alabama-based sole provider, father of 5 sons, building digital solutions for generational legacy.
 
-## Project State (February 21, 2026)
+## Project State (February 22, 2026)
 
 ### Completed
 - **Phase 1 BUILDERS:** 5 modules, complete, pushed to GitHub
 - **Phase 2 OPERATORS:** 7 modules, complete, pushed to GitHub
 - **Phase 3 EVERYDAY USERS:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat, pushed to GitHub
+- **Phase 4 LEGACY:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
 - **MCP server:** 19 tools live at localhost:8100 (shanebrain-mcp Docker container)
 - **shared/utils/mcp-call.py:** MCP client helper (stdlib only, zero pip installs)
 - **shared/utils/mcp-health-check.bat:** MCP server health checker
 
 ### Completed (cont.)
-- **Phase 4 LEGACY:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
+- **Phase 5 MULTIPLIERS:** 10 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
 
-### Phase 4 Module Specs
-| Module | Title | MCP Tools | Purpose |
-|--------|-------|-----------|---------|
-| 4.1 | What Is a Brain? | `search_knowledge`, `system_health` | Explain personal AI brains, show ShaneBrain as living example |
-| 4.2 | Feed Your Brain | `add_knowledge`, `vault_add` | Add knowledge, values, and memories to your brain |
-| 4.3 | Talk to Your Brain | `chat_with_shanebrain`, `search_knowledge` | First conversation with your own AI, understanding RAG |
-| 4.4 | Your Daily Companion | `daily_note_add`, `daily_note_search`, `daily_briefing` | Journaling and reflection habit with AI |
-| 4.5 | Write Your Story | `draft_create`, `vault_search` | Draft letters, stories, messages to family |
-| 4.6 | Guard Your Legacy | `security_log_search`, `privacy_audit_search`, `system_health` | Protect your data, understand who sees what |
-| 4.7 | Pass It On | `add_knowledge`, `vault_add`, `chat_with_shanebrain` | Capstone: build a YourNameBrain from scratch |
+### Phase 5 Module Specs
+| Module | Title | Theme | MCP Tools | Purpose |
+|--------|-------|-------|-----------|---------|
+| 5.1 | Lock the Gates | DEFENDERS | `system_health`, `security_log_search` | Port scanning, firewall verification, hardening report |
+| 5.2 | Threat Spotter | DEFENDERS | `add_knowledge`, `search_knowledge`, `chat_with_shanebrain`, `security_log_search` | Build threat taxonomy, AI-assisted threat classification |
+| 5.3 | Backup and Restore | DEFENDERS | `search_knowledge`, `vault_search`, `vault_list_categories`, `system_health`, `add_knowledge`, `vault_add` | Export/import knowledge + vault data, verify integrity |
+| 5.4 | Teach the Teacher | TEACHERS | `add_knowledge`, `search_knowledge`, `chat_with_shanebrain` | Build teaching knowledge base, AI as teaching assistant |
+| 5.5 | Workshop in a Box | TEACHERS | `draft_create`, `vault_add`, `vault_search`, `search_knowledge` | Generate workshop script + facilitator checklist |
+| 5.6 | Brain Export | CONNECTORS | `search_knowledge`, `vault_search`, `vault_list_categories`, `daily_note_search`, `system_health` | Structured JSON export with manifest and checksums |
+| 5.7 | Family Mesh | CONNECTORS | `add_knowledge`, `search_knowledge`, `chat_with_shanebrain`, `search_friends`, `get_top_friends` | Multi-brain simulation using category namespaces |
+| 5.8 | Under the Hood | BUILDERS v2 | `system_health` (raw curl) | Raw MCP protocol — JSON-RPC, sessions, SSE parsing |
+| 5.9 | Prompt Chains | BUILDERS v2 | `chat_with_shanebrain`, `search_knowledge`, `vault_search`, `draft_create` | Multi-step prompt pipelines, output-as-input chains |
+| 5.10 | The Multiplier | CAPSTONE | ALL | All four themes in one exercise, 8 checks, graduation |
 
 ### Architecture Decisions
 - Phase 1-2 use direct curl to Ollama/Weaviate
 - Phase 3-4 use MCP tools via mcp-call.py wrapper
+- Phase 5 uses MCP tools via mcp-call.py PLUS raw curl to MCP (Module 5.8)
 - MCP server lives in shanebrain-core repo on RAID (`/mnt/shanebrain-raid/shanebrain-core/`)
 - Training modules live in THIS repo on external drive (`/media/shane/ANGEL_CLOUD/AI-Trainer-MAX/`)
 - These are TWO SEPARATE repos — do NOT mix them
 - All training content builds HERE in AI-Trainer-MAX
 - MCP server is a dependency, not something we build here
 - Phase 4 tone is legacy-focused — family metaphors, what you leave behind. Module 4.7 is the capstone where users build their own YourNameBrain.
+- Phase 5 tone is empowerment-focused — you are no longer a student, you are a multiplier. Defend, teach, connect, build.
+- Phase 5 creates NO new Weaviate classes — uses existing MCP collections only
+- Phase 5 uses knowledge categories as namespaces for multi-brain simulation (Module 5.7)
 
 ## Repository Boundaries — SINGLE SOURCE OF TRUTH
 
@@ -103,14 +111,25 @@ AI-Trainer-MAX/
 │   │   ├── module-3.5-daily-briefing/
 │   │   ├── module-3.6-digital-footprint/
 │   │   └── module-3.7-family-dashboard/
-│   └── phase-4-legacy/              # COMPLETE — 7 modules, YourNameBrain digital inheritance
-│       ├── module-4.1-what-is-a-brain/
-│       ├── module-4.2-feed-your-brain/
-│       ├── module-4.3-talk-to-your-brain/
-│       ├── module-4.4-your-daily-companion/
-│       ├── module-4.5-write-your-story/
-│       ├── module-4.6-guard-your-legacy/
-│       └── module-4.7-pass-it-on/
+│   ├── phase-4-legacy/              # COMPLETE — 7 modules, YourNameBrain digital inheritance
+│   │   ├── module-4.1-what-is-a-brain/
+│   │   ├── module-4.2-feed-your-brain/
+│   │   ├── module-4.3-talk-to-your-brain/
+│   │   ├── module-4.4-your-daily-companion/
+│   │   ├── module-4.5-write-your-story/
+│   │   ├── module-4.6-guard-your-legacy/
+│   │   └── module-4.7-pass-it-on/
+│   └── phase-5-multipliers/         # COMPLETE — 10 modules, defend/teach/connect/build
+│       ├── module-5.1-lock-the-gates/
+│       ├── module-5.2-threat-spotter/
+│       ├── module-5.3-backup-and-restore/
+│       ├── module-5.4-teach-the-teacher/
+│       ├── module-5.5-workshop-in-a-box/
+│       ├── module-5.6-brain-export/
+│       ├── module-5.7-family-mesh/
+│       ├── module-5.8-under-the-hood/
+│       ├── module-5.9-prompt-chains/
+│       └── module-5.10-the-multiplier/
 ├── progress/
 │   └── user-progress.json
 └── shared/
@@ -201,6 +220,7 @@ Phase 3 and 4 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP serv
 | Phase 2: OPERATORS | Small business owners, dispatchers | ✅ COMPLETE (7 modules) | Business automation |
 | Phase 3: EVERYDAY | 800M non-technical Windows users | ✅ COMPLETE (7 modules) | MCP-powered personal AI tools |
 | Phase 4: LEGACY | Families, next generation | ✅ COMPLETE (7 modules) | YourNameBrain digital inheritance |
+| Phase 5: MULTIPLIERS | Phase 1-4 graduates | ✅ COMPLETE (10 modules) | Harden, teach, connect, extend |
 
 ## Mission Context
 

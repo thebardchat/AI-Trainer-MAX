@@ -324,6 +324,134 @@
           "mcp_tools": ["add_knowledge", "vault_add", "chat_with_shanebrain"]
         }
       }
+    },
+    "phase-5-multipliers": {
+      "title": "MULTIPLIERS",
+      "status": "active",
+      "target_audience": "Phase 1-4 graduates ready to defend, teach, connect, and build deeper",
+      "mcp_server": "http://localhost:8100/mcp",
+      "modules": {
+        "5.1": {
+          "id": "5.1",
+          "title": "Lock the Gates",
+          "description": "Go beyond basic security awareness. Scan ports, verify firewall rules, check service exposure on your LAN, and generate a hardening report for your AI stack.",
+          "estimated_minutes": 15,
+          "prerequisites": ["3.4"],
+          "path": "phases/phase-5-multipliers/module-5.1-lock-the-gates",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["port scanning", "firewall verification", "LAN exposure testing", "service hardening", "defense in depth"],
+          "mcp_tools": ["system_health", "security_log_search"],
+          "theme": "DEFENDERS"
+        },
+        "5.2": {
+          "id": "5.2",
+          "title": "Threat Spotter",
+          "description": "Build a threat taxonomy in your knowledge base and use your AI to classify security scenarios by severity. Your brain becomes a security advisor.",
+          "estimated_minutes": 15,
+          "prerequisites": ["5.1", "4.2"],
+          "path": "phases/phase-5-multipliers/module-5.2-threat-spotter",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["threat classification", "security knowledge base", "AI-assisted triage", "severity scoring", "incident patterns"],
+          "mcp_tools": ["add_knowledge", "search_knowledge", "chat_with_shanebrain", "security_log_search"],
+          "theme": "DEFENDERS"
+        },
+        "5.3": {
+          "id": "5.3",
+          "title": "Backup and Restore",
+          "description": "Export your knowledge and vault to local JSON files, verify integrity against system health counts, and prove you can restore. Your brain is only as safe as your backup.",
+          "estimated_minutes": 20,
+          "prerequisites": ["4.7"],
+          "path": "phases/phase-5-multipliers/module-5.3-backup-and-restore",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["knowledge export", "vault export", "integrity verification", "selective restore", "backup habits"],
+          "mcp_tools": ["search_knowledge", "vault_search", "vault_list_categories", "system_health", "add_knowledge", "vault_add"],
+          "theme": "DEFENDERS"
+        },
+        "5.4": {
+          "id": "5.4",
+          "title": "Teach the Teacher",
+          "description": "Build a teaching brain — add beginner-friendly explanations of Ollama, vectors, RAG, MCP, and YourNameBrain to your knowledge base. Test your AI as a teaching assistant.",
+          "estimated_minutes": 15,
+          "prerequisites": ["4.3", "4.2"],
+          "path": "phases/phase-5-multipliers/module-5.4-teach-the-teacher",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["teaching knowledge base", "beginner explanations", "AI teaching assistant", "knowledge transfer", "curriculum design"],
+          "mcp_tools": ["add_knowledge", "search_knowledge", "chat_with_shanebrain"],
+          "theme": "TEACHERS"
+        },
+        "5.5": {
+          "id": "5.5",
+          "title": "Workshop in a Box",
+          "description": "Generate a complete 30-minute workshop script and facilitator checklist using AI drafting. Store them in your vault as reusable teaching assets. One trained person can now train a room.",
+          "estimated_minutes": 20,
+          "prerequisites": ["5.4", "3.3"],
+          "path": "phases/phase-5-multipliers/module-5.5-workshop-in-a-box",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["workshop design", "instructional drafting", "facilitator checklists", "teaching asset management", "group training"],
+          "mcp_tools": ["draft_create", "vault_add", "vault_search", "search_knowledge"],
+          "theme": "TEACHERS"
+        },
+        "5.6": {
+          "id": "5.6",
+          "title": "Brain Export",
+          "description": "Create a structured, portable brain snapshot — knowledge, vault, and notes bundled into a single JSON file with manifest, counts, and checksums. Your brain is not locked to one machine.",
+          "estimated_minutes": 15,
+          "prerequisites": ["5.3"],
+          "path": "phases/phase-5-multipliers/module-5.6-brain-export",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["structured export", "manifest generation", "data portability", "brain packaging", "checksum verification"],
+          "mcp_tools": ["search_knowledge", "vault_search", "vault_list_categories", "daily_note_search", "system_health"],
+          "theme": "CONNECTORS"
+        },
+        "5.7": {
+          "id": "5.7",
+          "title": "Family Mesh",
+          "description": "Simulate a multi-brain family network using knowledge categories as namespaces. Create Dad's brain, Mom's brain, and Kid's brain — then query across them. The architecture of connected brains.",
+          "estimated_minutes": 20,
+          "prerequisites": ["5.6", "4.7"],
+          "path": "phases/phase-5-multipliers/module-5.7-family-mesh",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["multi-brain architecture", "category namespaces", "family knowledge mesh", "cross-brain queries", "social graph modeling"],
+          "mcp_tools": ["add_knowledge", "search_knowledge", "chat_with_shanebrain", "search_friends", "get_top_friends"],
+          "theme": "CONNECTORS"
+        },
+        "5.8": {
+          "id": "5.8",
+          "title": "Under the Hood",
+          "description": "Open the MCP black box. Build JSON-RPC requests by hand, send them with raw curl, capture session IDs, and parse SSE responses. See what mcp-call.py does for you.",
+          "estimated_minutes": 15,
+          "prerequisites": ["1.5", "3.1"],
+          "path": "phases/phase-5-multipliers/module-5.8-under-the-hood",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["MCP protocol", "JSON-RPC 2.0", "HTTP session management", "SSE parsing", "abstraction understanding"],
+          "mcp_tools": ["system_health"],
+          "theme": "BUILDERS v2"
+        },
+        "5.9": {
+          "id": "5.9",
+          "title": "Prompt Chains",
+          "description": "Chain prompts together — one AI response feeds the next. Summarize vault content, analyze themes, generate a mission statement. Three calls, one pipeline, progressively refined output.",
+          "estimated_minutes": 20,
+          "prerequisites": ["1.4", "4.3"],
+          "path": "phases/phase-5-multipliers/module-5.9-prompt-chains",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["prompt chaining", "output-as-input", "progressive refinement", "prompt templates", "context management"],
+          "mcp_tools": ["chat_with_shanebrain", "search_knowledge", "vault_search", "draft_create"],
+          "theme": "BUILDERS v2"
+        },
+        "5.10": {
+          "id": "5.10",
+          "title": "The Multiplier",
+          "description": "The Phase 5 capstone. One exercise, all four themes: harden your system, generate a teaching draft, export a brain snapshot, and make a raw MCP protocol call. Prove you can defend, teach, connect, and build.",
+          "estimated_minutes": 20,
+          "prerequisites": ["5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9"],
+          "path": "phases/phase-5-multipliers/module-5.10-the-multiplier",
+          "files": ["lesson.md", "exercise.bat", "verify.bat", "hints.md"],
+          "skills_taught": ["full-stack mastery", "cross-theme integration", "multiplier mindset", "system sovereignty", "training graduation"],
+          "mcp_tools": ["system_health", "security_log_search", "search_knowledge", "chat_with_shanebrain", "draft_create", "vault_add", "vault_search", "vault_list_categories", "add_knowledge"],
+          "theme": "CAPSTONE"
+        }
+      }
     }
   }
 }
