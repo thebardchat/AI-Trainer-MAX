@@ -38,7 +38,7 @@ def mcp_post(payload, session_id=None):
     req = urllib.request.Request(MCP_URL, data=data, headers=HEADERS, method="POST")
     if session_id:
         req.add_header("Mcp-Session-Id", session_id)
-    resp = urllib.request.urlopen(req, timeout=60)
+    resp = urllib.request.urlopen(req, timeout=120)
     body = resp.read().decode("utf-8")
     sid = resp.headers.get("Mcp-Session-Id", session_id)
     return body, sid
