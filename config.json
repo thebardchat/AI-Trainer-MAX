@@ -1,6 +1,6 @@
 {
   "project": "Angel Cloud AI Training Tools",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "base_path": "D:\\Angel_Cloud\\shanebrain-core\\training-tools",
   "hardware": {
     "ram_ceiling_gb": 7.4,
@@ -18,7 +18,7 @@
   "phases": {
     "phase-1-builders": {
       "title": "BUILDERS",
-      "status": "active",
+      "status": "complete",
       "target_audience": "Developers and technical self-learners",
       "modules": {
         "1.1": {
@@ -75,7 +75,7 @@
     },
     "phase-2-operators": {
       "title": "OPERATORS",
-      "status": "active",
+      "status": "complete",
       "target_audience": "Small business owners, dispatchers, hustlers",
       "modules": {
         "2.1": {
@@ -157,7 +157,7 @@
     },
     "phase-3-everyday": {
       "title": "EVERYDAY USERS",
-      "status": "active",
+      "status": "complete",
       "target_audience": "The 800 million — non-technical Windows users",
       "mcp_server": "http://localhost:8100/mcp",
       "modules": {
@@ -242,7 +242,7 @@
     },
     "phase-4-legacy": {
       "title": "LEGACY",
-      "status": "active",
+      "status": "complete",
       "target_audience": "Family, next generation, YourNameBrain users",
       "mcp_server": "http://localhost:8100/mcp",
       "modules": {
@@ -327,7 +327,7 @@
     },
     "phase-5-multipliers": {
       "title": "MULTIPLIERS",
-      "status": "active",
+      "status": "complete",
       "target_audience": "Phase 1-4 graduates ready to defend, teach, connect, and build deeper",
       "mcp_server": "http://localhost:8100/mcp",
       "modules": {

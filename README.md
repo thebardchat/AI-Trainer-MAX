@@ -6,7 +6,9 @@
 
 ## What Is This?
 
-A modular, CLI-based training system that teaches people how to build, run, and own local AI — starting from zero. Every module runs on Windows, uses batch scripts, and respects a 7.4GB RAM ceiling.
+A modular, CLI-based training system that teaches people how to build, run, and own local AI — starting from zero. 36 modules across 5 phases take you from installing your first model to building a personal AI brain you can pass down to your family.
+
+Every module runs on Windows .bat scripts, respects a 7.4GB RAM ceiling, and requires zero cloud accounts.
 
 This is the training layer of the Angel Cloud ecosystem.
 
@@ -16,45 +18,50 @@ This is the training layer of the Angel Cloud ecosystem.
 
 We believe AI literacy is a right, not a subscription.
 
+## Quick Start
+
+1. Install Ollama: https://ollama.com
+2. Install Docker Desktop (for Weaviate + MCP server)
+3. Open a terminal in this folder
+4. Run: `launch-training.bat`
+5. Start with Module 1.1
+
+The launcher handles health checks, progress tracking, and module navigation.
+
+## Phase Roadmap
+
+| Phase | Title | Modules | Audience | Focus |
+|-------|-------|---------|----------|-------|
+| 1 | BUILDERS | 5 | Developers, self-learners | Local AI with Ollama + RAG |
+| 2 | OPERATORS | 7 | Business owners, dispatchers | Business automation |
+| 3 | EVERYDAY | 7 | Non-technical Windows users | MCP-powered personal AI tools |
+| 4 | LEGACY | 7 | Families, next generation | YourNameBrain digital inheritance |
+| 5 | MULTIPLIERS | 10 | Phase 1-4 graduates | Defend, teach, connect, build deeper |
+| **Total** | | **36** | **All levels** | **Zero to AI sovereignty** |
+
+All 5 phases are complete and shipped.
+
 ## Architecture
 
 ```
-training-tools/
+AI-Trainer-MAX/
 ├── launch-training.bat              # Main entry point — start here
 ├── config.json                      # Module registry + metadata
 ├── phases/
-│   ├── phase-1-builders/            # NOW — Local AI fundamentals
-│   │   ├── module-1.1-first-local-llm/
-│   │   ├── module-1.2-vectors/
-│   │   ├── module-1.3-build-your-brain/
-│   │   ├── module-1.4-prompt-engineering/
-│   │   └── module-1.5-ship-it/
-│   ├── phase-2-operators/           # NEXT — Business automation
-│   ├── phase-3-everyday/            # SCALE — The 800 million
-│   └── phase-4-legacy/              # LONG-TERM — Digital inheritance
+│   ├── phase-1-builders/            # 5 modules — Ollama, vectors, RAG, prompts, packaging
+│   ├── phase-2-operators/           # 7 modules — Business brain, Q&A, drafts, workflows
+│   ├── phase-3-everyday/            # 7 modules — Vault, chat, drafting, security, briefings
+│   ├── phase-4-legacy/              # 7 modules — YourNameBrain, journaling, storytelling
+│   └── phase-5-multipliers/         # 10 modules — Hardening, teaching, export, protocol
 ├── progress/
 │   └── user-progress.json           # Auto-tracked completion data
 └── shared/
     ├── ascii-art/                   # CLI branding assets
-    └── utils/                       # Health checks, RAM monitor, etc.
+    └── utils/
+        ├── health-check.bat         # Ollama + Weaviate health check
+        ├── mcp-call.py              # MCP client helper (stdlib only)
+        └── mcp-health-check.bat     # MCP server health check
 ```
-
-## Quick Start
-
-1. Make sure Ollama is installed: https://ollama.com
-2. Open a terminal in this folder
-3. Run: `launch-training.bat`
-4. Start with Module 1.1
-
-That's it. The launcher handles health checks, progress tracking, and module navigation.
-
-## Requirements
-
-- Windows 10 or 11
-- 7.4GB RAM (4GB+ free recommended)
-- Ollama installed
-- Weaviate (for Modules 1.2+) — local instance on port 8080
-- curl (included in Windows 10+)
 
 ## Module Flow
 
@@ -64,19 +71,46 @@ Every module follows the same pattern:
 LESSON → EXERCISE → VERIFY → NEXT
 ```
 
-- **lesson.md** — What you need to know (readable via `type lesson.md`)
+- **lesson.md** — What you need to know (starts with WHAT YOU'LL BUILD, ends with WHAT YOU PROVED)
 - **exercise.bat** — Hands-on tasks (guided, under 15 minutes)
-- **verify.bat** — Automated pass/fail check with specific failure reasons
-- **hints.md** — Progressive hints if you get stuck (3 levels, no full answers until Level 3)
+- **verify.bat** — Automated pass/fail checks with specific failure reasons
+- **hints.md** — Progressive hints if you get stuck (3 levels)
 
-## Phase Roadmap
+## Tech Stack
 
-| Phase | Audience | Status |
-|-------|----------|--------|
-| Phase 1: Builders | Developers, self-learners | Active |
-| Phase 2: Operators | Business owners, dispatchers | Planned |
-| Phase 3: Everyday | Non-technical Windows users | Planned |
-| Phase 4: Legacy | Families, next generation | Planned |
+- **LLM Runtime:** Ollama (localhost:11434)
+- **Default Model:** llama3.2:1b (Phase 1-2), shanebrain-3b (Phase 3-5)
+- **Vector DB:** Weaviate (localhost:8080)
+- **MCP Server:** ShaneBrain MCP (localhost:8100) — 19 tools via Model Context Protocol
+- **Scripting:** Windows .bat (CMD compatible)
+- **Content Format:** Markdown
+- **JSON Handling:** Python stdlib only — zero pip installs
+- **Dependencies:** curl (built into Windows 10+), Python 3.x in PATH
+
+## Requirements
+
+- Windows 10 or 11
+- 7.4GB RAM minimum (4GB+ free recommended)
+- Ollama installed
+- Docker Desktop (for Weaviate + MCP server)
+- Python 3.x in PATH
+- curl (included in Windows 10+)
+
+## MCP Server (Phase 3-5)
+
+Phases 3-5 use the ShaneBrain MCP server for 19 AI tools:
+
+| Category | Tools |
+|----------|-------|
+| Knowledge | `search_knowledge`, `add_knowledge`, `chat_with_shanebrain` |
+| Vault | `vault_add`, `vault_search`, `vault_list_categories` |
+| Notes | `daily_note_add`, `daily_note_search`, `daily_briefing` |
+| Drafting | `draft_create`, `draft_search` |
+| Security | `security_log_search`, `privacy_audit_search` |
+| Social | `search_friends`, `get_top_friends` |
+| System | `system_health` |
+
+The MCP server runs in Docker alongside Weaviate. See the [shanebrain-core](https://github.com/thebardchat/shanebrain-core) repo for server setup.
 
 ## Contributing
 
@@ -94,16 +128,8 @@ This is a family-driven project, but contributions are welcome.
 1. Create a folder under the appropriate phase: `module-X.X-short-name/`
 2. Include all 4 files: lesson.md, exercise.bat, verify.bat, hints.md
 3. Register it in config.json
-4. Test on a machine with 4GB free RAM
-
-## Tech Stack
-
-- **LLM Runtime:** Ollama
-- **Default Model:** llama3.2:1b
-- **Vector DB:** Weaviate (local)
-- **Scripting:** Windows .bat
-- **Content Format:** Markdown
-- **Dependencies:** curl (built into Windows 10+)
+4. Add it to launch-training.bat menu
+5. Test on a machine with 4GB free RAM
 
 ## The Mission
 

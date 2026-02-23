@@ -8,19 +8,32 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 **Base path on local machine:** /media/shane/ANGEL_CLOUD/AI-Trainer-MAX/
 **Owner:** Shane — Alabama-based sole provider, father of 5 sons, building digital solutions for generational legacy.
 
-## Project State (February 22, 2026)
+## Project State (February 23, 2026)
 
-### Completed
-- **Phase 1 BUILDERS:** 5 modules, complete, pushed to GitHub
-- **Phase 2 OPERATORS:** 7 modules, complete, pushed to GitHub
-- **Phase 3 EVERYDAY USERS:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat, pushed to GitHub
-- **Phase 4 LEGACY:** 7 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
+### Completed — All Phases Pushed to GitHub
+- **Phase 1 BUILDERS:** 5 modules — local AI fundamentals (Ollama, Weaviate, RAG)
+- **Phase 2 OPERATORS:** 7 modules — business automation (Q&A, drafting, workflows)
+- **Phase 3 EVERYDAY USERS:** 7 modules — MCP-powered personal AI tools
+- **Phase 4 LEGACY:** 7 modules — YourNameBrain digital inheritance
+- **Phase 5 MULTIPLIERS:** 10 modules — defend, teach, connect, build deeper
+- **Total: 36 modules** (144 files: lesson.md, exercise.bat, verify.bat, hints.md each)
 - **MCP server:** 19 tools live at localhost:8100 (shanebrain-mcp Docker container)
-- **shared/utils/mcp-call.py:** MCP client helper (stdlib only, zero pip installs)
+- **shared/utils/mcp-call.py:** MCP client helper (stdlib only, zero pip installs, 600s timeout)
 - **shared/utils/mcp-health-check.bat:** MCP server health checker
 
-### Completed (cont.)
-- **Phase 5 MULTIPLIERS:** 10 modules complete (lesson.md, exercise.bat, verify.bat, hints.md each), registered in config.json and launch-training.bat
+### Performance Tuning (Pi Hardware)
+- **Pi specs:** Raspberry Pi 5, 16GB RAM, ARM CPU (no GPU)
+- **Default model:** shanebrain-3b — fits in 16GB, but CPU inference is slow (~6s/token through MCP stack)
+- **Server-side timeouts:** ollama.Client timeout=600s in server.py (chat, briefing, draft)
+- **Client-side timeout:** mcp-call.py timeout=600s
+- **num_predict limits:** chat/briefing=100 tokens, drafts=150 tokens (keeps responses under 10 min)
+- **Cold start:** First inference after model unload takes 2-6 min (model loading + prompt eval)
+- **Warm model:** keep_alive="10m" holds model in RAM between calls
+
+### What's Next
+- **Phase 6:** Not yet planned. Possible directions: DEPLOYMENT (package for other families), FEDERATION (real multi-brain networking), MOBILE (phone-based access to local brain)
+- **Testing:** All modules need live end-to-end testing on actual Windows hardware
+- **Optimization:** Consider llama3.2:1b as a "fast mode" alternative for time-sensitive modules
 
 ### Phase 5 Module Specs
 | Module | Title | Theme | MCP Tools | Purpose |
@@ -74,11 +87,13 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 
 ## Hardware Constraints — CRITICAL
 
-- **RAM ceiling:** 7.4GB total
+- **Target user RAM:** 7.4GB minimum (modules designed for this ceiling)
+- **Dev/build machine:** Raspberry Pi 5 with 16GB RAM
 - **Module budget:** 3GB max peak per module (reserve rest for Ollama + Weaviate)
 - **Block threshold:** Script must refuse to run if < 2GB free RAM
 - **Warn threshold:** Alert user if < 4GB free RAM
 - Every script, every module, every feature MUST respect these limits. If a solution would exceed 3GB module budget, find a leaner approach.
+- **Inference reality:** shanebrain-3b on Pi CPU runs ~6s/token. Modules using `chat_with_shanebrain` will take 2-10 minutes per AI response. Design exercises to account for wait times.
 
 ## Project Structure
 
@@ -221,6 +236,7 @@ Phase 3 and 4 modules use `shared/utils/mcp-call.py` to call ShaneBrain MCP serv
 | Phase 3: EVERYDAY | 800M non-technical Windows users | ✅ COMPLETE (7 modules) | MCP-powered personal AI tools |
 | Phase 4: LEGACY | Families, next generation | ✅ COMPLETE (7 modules) | YourNameBrain digital inheritance |
 | Phase 5: MULTIPLIERS | Phase 1-4 graduates | ✅ COMPLETE (10 modules) | Harden, teach, connect, extend |
+| **TOTAL** | **All levels** | **36 modules shipped** | **Zero to sovereignty** |
 
 ## Mission Context
 
