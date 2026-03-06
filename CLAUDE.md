@@ -8,7 +8,7 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 **Base path on local machine:** /media/shane/ANGEL_CLOUD/AI-Trainer-MAX/
 **Owner:** Shane — Alabama-based sole provider, father of 5 sons, building digital solutions for generational legacy.
 
-## Project State (February 23, 2026)
+## Project State (March 6, 2026)
 
 ### Completed — All Phases Pushed to GitHub
 - **Phase 1 BUILDERS:** 5 modules — local AI fundamentals (Ollama, Weaviate, RAG)
@@ -148,7 +148,6 @@ AI-Trainer-MAX/
 ├── progress/
 │   └── user-progress.json
 └── shared/
-    ├── ascii-art/
     └── utils/
         ├── health-check.bat
         ├── mcp-call.py              # MCP client helper (stdlib only)
