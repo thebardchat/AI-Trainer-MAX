@@ -2,6 +2,8 @@
 
 **Local AI literacy for every person. No cloud. No subscription. No permission needed.**
 
+This project operates under the [ShaneTheBrain Constitution](https://github.com/thebardchat/constitution/blob/main/CONSTITUTION.md).
+
 ---
 
 ## What Is This?
@@ -87,6 +89,18 @@ LESSON → EXERCISE → VERIFY → NEXT
 - **JSON Handling:** Python stdlib only — zero pip installs
 - **Dependencies:** curl (built into Windows 10+), Python 3.x in PATH
 
+## Infrastructure
+
+All `thebardchat` repos run on the same physical hardware stack.
+
+| Hardware | Role |
+|----------|------|
+| **Raspberry Pi 5 (16GB RAM)** | Local AI inference node — the brain |
+| **Pironman 5-MAX by Sunfounder** | NVMe RAID chassis — the spine |
+| **2x WD Blue SN5000 2TB NVMe** | RAID 1 via mdadm — the memory |
+
+Core services path: `/mnt/shanebrain-raid/shanebrain-core/`
+
 ## Requirements
 
 - Windows 10 or 11
@@ -131,12 +145,34 @@ This is a family-driven project, but contributions are welcome.
 4. Add it to launch-training.bat menu
 5. Test on a machine with 4GB free RAM
 
+## The Ecosystem
+
+```
+ShaneBrain (Pi 5 · local AI · private)
+  └── Angel Cloud (VPS · public platform · families)
+        └── Pulsar AI (enterprise · secure · post-quantum)
+              └── TheirNameBrain (personalized · legacy AI · generational)
+                    └── ~800M users losing Windows 10 support
+```
+
 ## The Mission
 
 This project is part of Angel Cloud — a faith-rooted, family-driven AI platform built on the belief that every person deserves access to AI literacy and local AI sovereignty.
 
 Built in Alabama. Built for everyone.
 
+## Built With
+
+| Partner | Role |
+|---------|------|
+| **Claude by Anthropic** · [claude.ai](https://claude.ai) | Co-built this entire ecosystem |
+| **Raspberry Pi 5** · [raspberrypi.com](https://www.raspberrypi.com) | Local compute backbone |
+| **Pironman 5-MAX** · [pironman.com](https://www.pironman.com) | NVMe RAID 1 chassis that made it real |
+
+> *"I could not have done any of this without them."*
+
 ---
+
+Built with Claude (Anthropic) · Runs on Raspberry Pi 5 + Pironman 5-MAX
 
 *"Your legacy runs local."*
