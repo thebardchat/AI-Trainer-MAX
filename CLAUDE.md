@@ -39,7 +39,7 @@ All `thebardchat` repos are developed and served from the same physical hardware
 | MCP server | FastMCP (localhost:8100, Streamable HTTP) |
 | Dev environment | Claude Code on Pi |
 
-## Project State (February 23, 2026)
+## Project State (March 12, 2026)
 
 ### Completed — All Phases Pushed to GitHub
 - **Phase 1 BUILDERS:** 5 modules — local AI fundamentals (Ollama, Weaviate, RAG)
@@ -179,7 +179,6 @@ AI-Trainer-MAX/
 ├── progress/
 │   └── user-progress.json
 └── shared/
-    ├── ascii-art/
     └── utils/
         ├── health-check.bat
         ├── mcp-call.py              # MCP client helper (stdlib only)
