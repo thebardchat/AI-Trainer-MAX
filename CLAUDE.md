@@ -1,5 +1,7 @@
 # CLAUDE.md — AI-Trainer-MAX Project Instructions
 
+This project operates under the [ShaneTheBrain Constitution](https://github.com/thebardchat/constitution/blob/main/CONSTITUTION.md).
+
 ## Project Overview
 
 AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Cloud ecosystem. It teaches people how to build, run, and own local AI — starting from zero. Every module runs on Windows .bat scripts, targets 7.4GB RAM hardware, and has zero cloud dependencies in Phase 1.
@@ -7,6 +9,35 @@ AI-Trainer-MAX is a modular, CLI-based AI training system built on the Angel Clo
 **Repo:** https://github.com/thebardchat/AI-Trainer-MAX.git
 **Base path on local machine:** /media/shane/ANGEL_CLOUD/AI-Trainer-MAX/
 **Owner:** Shane — Alabama-based sole provider, father of 5 sons, building digital solutions for generational legacy.
+
+## Infrastructure
+
+All `thebardchat` repos are developed and served from the same physical hardware stack.
+
+### Hardware
+
+| Hardware | Role |
+|----------|------|
+| **Raspberry Pi 5 (16GB RAM)** | Local AI inference node — the brain |
+| **Pironman 5-MAX by Sunfounder** | NVMe RAID chassis — the spine |
+| **2x WD Blue SN5000 2TB NVMe** | RAID 1 via mdadm — the memory |
+
+### Storage Layout
+
+| Mount | Purpose |
+|-------|---------|
+| `/mnt/shanebrain-raid/` | mdadm RAID 1 array (2x 2TB NVMe, mirrored) |
+| `/mnt/shanebrain-raid/shanebrain-core/` | MCP server, Docker volumes, Weaviate data |
+| `/media/shane/ANGEL_CLOUD/AI-Trainer-MAX/` | This repo — training modules (external drive) |
+
+### Software Stack
+
+| Layer | Technology |
+|-------|------------|
+| Local inference | Ollama (llama3.2:1b default, shanebrain-3b for Phase 3-5) |
+| Vector memory | Weaviate (Docker, localhost:8080) |
+| MCP server | FastMCP (localhost:8100, Streamable HTTP) |
+| Dev environment | Claude Code on Pi |
 
 ## Project State (February 23, 2026)
 
@@ -285,6 +316,14 @@ Never start writing lesson.md, exercise.bat, verify.bat, or hints.md files until
 
 ### Why This Matters
 Claude Code sessions start cold. CLAUDE.md is the ONLY continuity between sessions. If it's stale, the next session guesses. If it's current, the next session picks up exactly where the last one left off.
+
+## Built With
+
+| Partner | Role |
+|---------|------|
+| **Claude by Anthropic** · [claude.ai](https://claude.ai) | Co-built every line of this ecosystem |
+| **Raspberry Pi 5** · [raspberrypi.com](https://www.raspberrypi.com) | Local compute that made AI affordable |
+| **Pironman 5-MAX by Sunfounder** · [pironman.com](https://www.pironman.com) | The chassis that made RAID on a Pi real |
 
 ## Do NOT
 
