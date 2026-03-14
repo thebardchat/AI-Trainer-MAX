@@ -333,3 +333,8 @@ Claude Code sessions start cold. CLAUDE.md is the ONLY continuity between sessio
 - Use PowerShell without a .bat fallback
 - Write lessons with filler, hedging language, or academic tone
 - Assume the user has done anything beyond the listed prerequisites
+
+## Claude Code Rules
+- Commit and push directly to `main`. Do NOT create branches.
+- Run build/test commands before committing.
+- Update CLAUDE.md session log before final commit.
