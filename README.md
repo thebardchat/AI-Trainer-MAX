@@ -1,8 +1,19 @@
+<div align="center">
+<img src=".github/assets/banner.png" alt="AI Trainer MAX" width="100%">
+
 # Angel Cloud AI Training Tools (ACATT)
 
 **Local AI literacy for every person. No cloud. No subscription. No permission needed.**
 
-This project operates under the [ShaneTheBrain Constitution](https://github.com/thebardchat/constitution/blob/main/CONSTITUTION.md).
+[![Constitution](https://img.shields.io/badge/Constitution-ShaneTheBrain-blue)](https://github.com/thebardchat/constitution)
+[![Modules](https://img.shields.io/badge/Modules-36-brightgreen)](https://github.com/thebardchat/AI-Trainer-MAX)
+[![Phases](https://img.shields.io/badge/Phases-5-purple)](https://github.com/thebardchat/AI-Trainer-MAX)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-blue)](https://github.com/thebardchat/AI-Trainer-MAX)
+
+*"Your legacy runs local."*
+
+</div>
 
 ---
 
@@ -32,16 +43,47 @@ The launcher handles health checks, progress tracking, and module navigation.
 
 ## Phase Roadmap
 
-| Phase | Title | Modules | Audience | Focus |
-|-------|-------|---------|----------|-------|
-| 1 | BUILDERS | 5 | Developers, self-learners | Local AI with Ollama + RAG |
-| 2 | OPERATORS | 7 | Business owners, dispatchers | Business automation |
-| 3 | EVERYDAY | 7 | Non-technical Windows users | MCP-powered personal AI tools |
-| 4 | LEGACY | 7 | Families, next generation | YourNameBrain digital inheritance |
-| 5 | MULTIPLIERS | 10 | Phase 1-4 graduates | Defend, teach, connect, build deeper |
-| **Total** | | **36** | **All levels** | **Zero to AI sovereignty** |
+All 5 phases are complete and shipped. 36 modules. Zero to AI sovereignty.
 
-All 5 phases are complete and shipped.
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <img src=".github/assets/phase1-builders.png" alt="Phase 1: Builders" width="180"><br/>
+      <b>Phase 1: BUILDERS</b><br/>
+      <sub>5 modules</sub><br/>
+      <sub>Developers, self-learners</sub><br/>
+      <sub><i>Local AI with Ollama + RAG</i></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src=".github/assets/phase2-operators.png" alt="Phase 2: Operators" width="180"><br/>
+      <b>Phase 2: OPERATORS</b><br/>
+      <sub>7 modules</sub><br/>
+      <sub>Business owners, dispatchers</sub><br/>
+      <sub><i>Business automation</i></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src=".github/assets/phase3-everyday.png" alt="Phase 3: Everyday" width="180"><br/>
+      <b>Phase 3: EVERYDAY</b><br/>
+      <sub>7 modules</sub><br/>
+      <sub>Non-technical Windows users</sub><br/>
+      <sub><i>MCP-powered personal AI tools</i></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src=".github/assets/phase4-legacy.png" alt="Phase 4: Legacy" width="180"><br/>
+      <b>Phase 4: LEGACY</b><br/>
+      <sub>7 modules</sub><br/>
+      <sub>Families, next generation</sub><br/>
+      <sub><i>YourNameBrain digital inheritance</i></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src=".github/assets/phase5-multipliers.png" alt="Phase 5: Multipliers" width="180"><br/>
+      <b>Phase 5: MULTIPLIERS</b><br/>
+      <sub>10 modules</sub><br/>
+      <sub>Phase 1-4 graduates</sub><br/>
+      <sub><i>Defend, teach, connect, build deeper</i></sub>
+    </td>
+  </tr>
+</table>
 
 ## Architecture
 
@@ -163,16 +205,34 @@ Built in Alabama. Built for everyone.
 
 ## Built With
 
-| Partner | Role |
-|---------|------|
-| **Claude by Anthropic** · [claude.ai](https://claude.ai) | Co-built this entire ecosystem |
-| **Raspberry Pi 5** · [raspberrypi.com](https://www.raspberrypi.com) | Local compute backbone |
-| **Pironman 5-MAX** · [pironman.com](https://www.pironman.com) | NVMe RAID 1 chassis that made it real |
+<table>
+  <tr>
+    <td align="center" width="200">
+      <b>Claude by Anthropic</b><br/>
+      <sub>AI partner and co-builder.</sub><br/><br/>
+      <a href="https://claude.ai"><code>claude.ai</code></a>
+    </td>
+    <td align="center" width="200">
+      <b>Raspberry Pi 5</b><br/>
+      <sub>Local AI compute node.</sub><br/><br/>
+      <a href="https://www.raspberrypi.com"><code>raspberrypi.com</code></a>
+    </td>
+    <td align="center" width="200">
+      <b>Pironman 5-MAX</b><br/>
+      <sub>NVMe RAID 1 chassis by Sunfounder.</sub><br/><br/>
+      <a href="https://www.sunfounder.com"><code>sunfounder.com</code></a>
+    </td>
+  </tr>
+</table>
 
 > *"I could not have done any of this without them."*
 
 ---
 
-Built with Claude (Anthropic) · Runs on Raspberry Pi 5 + Pironman 5-MAX
+<div align="center">
+
+*Part of the [ShaneBrain Ecosystem](https://github.com/thebardchat) · Built under the [Constitution](https://github.com/thebardchat/constitution)*
 
 *"Your legacy runs local."*
+
+</div>
