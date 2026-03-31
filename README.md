@@ -6,6 +6,9 @@
 **Local AI literacy for every person. No cloud. No subscription. No permission needed.**
 
 [![Constitution](https://img.shields.io/badge/Constitution-ShaneTheBrain-blue)](https://github.com/thebardchat/constitution)
+[![Sponsor](https://img.shields.io/badge/Sponsor-thebardchat-ea4aaa?logo=github-sponsors)](https://github.com/sponsors/thebardchat)
+[![Book](https://img.shields.io/badge/Book-Amazon-orange)](https://www.amazon.com/Probably-Think-This-Book-About/dp/B0GT25R5FD)
+[![Hugging Face](https://img.shields.io/badge/HuggingFace-thebardchat-yellow?logo=huggingface)](https://huggingface.co/thebardchat)
 [![Modules](https://img.shields.io/badge/Modules-36-brightgreen)](https://github.com/thebardchat/AI-Trainer-MAX)
 [![Phases](https://img.shields.io/badge/Phases-5-purple)](https://github.com/thebardchat/AI-Trainer-MAX)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
@@ -125,7 +128,7 @@ LESSON → EXERCISE → VERIFY → NEXT
 - **LLM Runtime:** Ollama (localhost:11434)
 - **Default Model:** llama3.2:1b (Phase 1-2), shanebrain-3b (Phase 3-5)
 - **Vector DB:** Weaviate (localhost:8080)
-- **MCP Server:** ShaneBrain MCP (localhost:8100) — 19 tools via Model Context Protocol
+- **MCP Server:** ShaneBrain MCP (localhost:8100) — 42 tools via Model Context Protocol
 - **Scripting:** Windows .bat (CMD compatible)
 - **Content Format:** Markdown
 - **JSON Handling:** Python stdlib only — zero pip installs
@@ -202,6 +205,16 @@ ShaneBrain (Pi 5 · local AI · private)
 This project is part of Angel Cloud — a faith-rooted, family-driven AI platform built on the belief that every person deserves access to AI literacy and local AI sovereignty.
 
 Built in Alabama. Built for everyone.
+
+## Support This Work
+
+If what I'm building matters to you -- local AI for real people, tools for the left-behind -- here's how to help:
+
+- **[Sponsor me on GitHub](https://github.com/sponsors/thebardchat)**
+- **[Buy the book](https://www.amazon.com/Probably-Think-This-Book-About/dp/B0GT25R5FD)** -- *You Probably Think This Book Is About You*
+- **Star the repos** -- visibility matters for projects like this
+
+---
 
 ## Built With
 
