@@ -14,6 +14,8 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-blue)](https://github.com/thebardchat/AI-Trainer-MAX)
 [![OBLIVION](https://img.shields.io/badge/Next-OBLIVION-8b0a0a?labelColor=000000)](https://github.com/thebardchat/AI-Trainer-OBLIVION)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-blue)](https://github.com/thebardchat/AI-Trainer-MAX)
+[![Stack](https://img.shields.io/badge/Stack-Cross--platform-22c55e)](https://github.com/thebardchat/AI-Trainer-MAX)
 
 *"Your legacy runs local."*
 
