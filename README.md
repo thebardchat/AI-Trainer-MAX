@@ -13,6 +13,7 @@
 [![Phases](https://img.shields.io/badge/Phases-5-purple)](https://github.com/thebardchat/AI-Trainer-MAX)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-blue)](https://github.com/thebardchat/AI-Trainer-MAX)
+[![OBLIVION](https://img.shields.io/badge/Next-OBLIVION-8b0a0a?labelColor=000000)](https://github.com/thebardchat/AI-Trainer-OBLIVION)
 
 *"Your legacy runs local."*
 
