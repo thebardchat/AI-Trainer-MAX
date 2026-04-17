@@ -218,6 +218,24 @@ If what I'm building matters to you -- local AI for real people, tools for the l
 - **Star the repos** -- visibility matters for projects like this
 
 ---
+ 
+## What's next — for graduates
+ 
+You finished all 5 phases of MAX. You own your local AI. You shipped your digital legacy.
+ 
+Now the training wheels come off.
+ 
+### → [AI-Trainer-OBLIVION](https://github.com/thebardchat/AI-Trainer-OBLIVION)
+ 
+*"For the graduates. Bring a bigger machine."*
+ 
+The research-math layer MAX deliberately left out. Fine-tuning on your own hardware. LoRA / QLoRA on consumer GPUs. Quantization trade-offs. Custom Modelfiles at depth. Training-data curation. Eval harnesses. Embedding-space geometry. Running your fine-tune in production.
+ 
+**Gate-kept on purpose.** No release date. Shipped when it's ready, not before.
+ 
+⭐ Star the repo to signal interest and get notified when alpha modules drop.
+ 
+---
 
 ## Built With
 
