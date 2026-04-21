@@ -3,6 +3,12 @@
 
 # Angel Cloud AI Training Tools (ACATT)
 
+> **Try Claude free for 2 weeks** — the AI behind this entire ecosystem. [Start your free trial →](https://claude.ai/referral/4fAMYN9Ing)
+
+---
+
+
+
 **Local AI literacy for every person. No cloud. No subscription. No permission needed.**
 
 [![Constitution](https://img.shields.io/badge/Constitution-ShaneTheBrain-blue)](https://github.com/thebardchat/constitution)
