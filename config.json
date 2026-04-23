@@ -1,19 +1,21 @@
 {
   "project": "Angel Cloud AI Training Tools",
-  "version": "5.0.0",
-  "base_path": "D:\\Angel_Cloud\\shanebrain-core\\training-tools",
+  "version": "5.1.0-linux",
+  "base_path": "/mnt/shanebrain-raid/AI-Trainer-MAX",
+  "platform": "linux-arm64",
   "hardware": {
-    "ram_ceiling_gb": 7.4,
+    "ram_ceiling_gb": 16.0,
     "module_max_gb": 3.0,
     "min_free_ram_mb": 2048,
     "warn_free_ram_mb": 4096
   },
   "infrastructure": {
     "llm": "ollama",
-    "model": "llama3.2:1b",
+    "model": "shanebrain-3b",
     "ollama_url": "http://localhost:11434",
     "vector_db": "weaviate",
-    "weaviate_url": "http://localhost:8080"
+    "weaviate_url": "http://localhost:8080",
+    "mcp_url": "http://localhost:8100/mcp"
   },
   "phases": {
     "phase-1-builders": {
