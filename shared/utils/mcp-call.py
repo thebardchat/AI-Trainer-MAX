@@ -33,15 +33,43 @@ HEADERS = {
 
 
 def mcp_post(payload, session_id=None):
-    """POST to MCP endpoint, return (response_body, headers)."""
+    """POST to MCP endpoint, return (response_body, headers).
+
+    Reads SSE streams line-by-line and returns as soon as a complete
+    JSON-RPC response is received (don't wait for connection close).
+    """
     data = json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(MCP_URL, data=data, headers=HEADERS, method="POST")
     if session_id:
         req.add_header("Mcp-Session-Id", session_id)
-    resp = urllib.request.urlopen(req, timeout=600)
-    body = resp.read().decode("utf-8")
+    resp = urllib.request.urlopen(req, timeout=120)
     sid = resp.headers.get("Mcp-Session-Id", session_id)
-    return body, sid
+    content_type = resp.headers.get("Content-Type", "")
+
+    # For SSE streams, read line-by-line using readline() and return
+    # as soon as we get a JSON-RPC result (don't block waiting for EOF)
+    if "text/event-stream" in content_type:
+        lines = []
+        for _ in range(200):  # safety limit
+            raw_line = resp.readline()
+            if not raw_line:
+                break
+            line = raw_line.decode("utf-8", errors="replace").rstrip("\n\r")
+            lines.append(line)
+            if line.startswith("data: "):
+                json_str = line[6:]
+                try:
+                    parsed = json.loads(json_str)
+                    # Got a JSON-RPC response — return immediately
+                    if "result" in parsed or "error" in parsed:
+                        return "\n".join(lines), sid
+                except json.JSONDecodeError:
+                    pass
+        return "\n".join(lines), sid
+    else:
+        # Plain JSON response
+        body = resp.read().decode("utf-8")
+        return body, sid
 
 
 def parse_sse(body):
