@@ -56,7 +56,7 @@ All `thebardchat` repos are developed and served from the same physical hardware
 - **Pi specs:** Raspberry Pi 5, 16GB RAM, ARM CPU (no GPU)
 - **Default model:** shanebrain-3b — fits in 16GB, but CPU inference is slow (~6s/token through MCP stack)
 - **Server-side timeouts:** ollama.Client timeout=600s in server.py (chat, briefing, draft)
-- **Client-side timeout:** mcp-call.py timeout=600s
+- **Client-side timeout:** mcp-call.py socket timeout=120s (SSE stream returns on first complete JSON-RPC result, no wait for EOF)
 - **num_predict limits:** chat/briefing=100 tokens, drafts=150 tokens (keeps responses under 10 min)
 - **Cold start:** First inference after model unload takes 2-6 min (model loading + prompt eval)
 - **Warm model:** keep_alive="10m" holds model in RAM between calls

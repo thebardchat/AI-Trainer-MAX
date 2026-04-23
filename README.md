@@ -45,10 +45,18 @@ We believe AI literacy is a right, not a subscription.
 
 ## Quick Start
 
+**Windows:**
 1. Install Ollama: https://ollama.com
 2. Install Docker Desktop (for Weaviate + MCP server)
 3. Open a terminal in this folder
 4. Run: `launch-training.bat`
+5. Start with Module 1.1
+
+**Linux / Raspberry Pi:**
+1. Install Ollama: https://ollama.com
+2. Start Docker services (Weaviate + MCP server)
+3. Open a terminal in this folder
+4. Run: `bash launch-training.sh`
 5. Start with Module 1.1
 
 The launcher handles health checks, progress tracking, and module navigation.
@@ -101,7 +109,9 @@ All 5 phases are complete and shipped. 36 modules. Zero to AI sovereignty.
 
 ```
 AI-Trainer-MAX/
-├── launch-training.bat              # Main entry point — start here
+├── launch-training.bat              # Windows entry point — start here
+├── launch-training.sh               # Linux/Pi entry point
+├── run-module.sh                    # Linux .bat compatibility layer
 ├── config.json                      # Module registry + metadata
 ├── phases/
 │   ├── phase-1-builders/            # 5 modules — Ollama, vectors, RAG, prompts, packaging
@@ -114,9 +124,10 @@ AI-Trainer-MAX/
 └── shared/
     ├── ascii-art/                   # CLI branding assets
     └── utils/
-        ├── health-check.bat         # Ollama + Weaviate health check
+        ├── health-check.bat         # Windows: Ollama + Weaviate health check
+        ├── health-check.sh          # Linux/Pi: Ollama + Weaviate + MCP health check
         ├── mcp-call.py              # MCP client helper (stdlib only)
-        └── mcp-health-check.bat     # MCP server health check
+        └── mcp-health-check.bat     # MCP server health check (Windows)
 ```
 
 ## Module Flow
