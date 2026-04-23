@@ -789,6 +789,63 @@
     border: 0;
   }
 
+  /* FOR YOU SECTION */
+  .for-you { background: var(--bg-void); }
+  .for-you-lead {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .for-you-lead strong { color: var(--text-primary); font-weight: 600; }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .outcome-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--p2-operators);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .outcome-card:hover { border-color: var(--p2-operators); }
+  .outcome-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--p2-operators);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+  .outcome-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .plain-cta {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .plain-cta p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 560px;
+  }
+  .plain-cta p strong { color: var(--text-primary); }
+
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -883,6 +940,52 @@
     </div>
   </div>
 </div>
+
+<!-- IS THIS FOR ME -->
+<section class="for-you">
+  <div class="container">
+    <div class="section-marker">Before you scroll</div>
+    <h2 class="section-title">You don't need to know what AI is.</h2>
+    <p class="for-you-lead">
+      You don't need to be a programmer. You don't need a new computer, a credit card, or a cloud account.
+      <strong>If you have a Windows PC and want to understand what everyone is talking about</strong> —
+      this is your starting point. No YouTube rabbit holes. No confusing documentation.
+      Just a system that walks you through it, step by step, at your pace.
+    </p>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 1</div>
+        <div class="outcome-text">You'll have a real AI running on your own computer — not someone else's server. You'll understand what's actually happening when you talk to ChatGPT or Claude.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 2</div>
+        <div class="outcome-text">You'll have an AI that knows your work. Ask it questions about your documents, your notes, your business — and it'll answer from what YOU gave it, nothing else.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 3</div>
+        <div class="outcome-text">You'll have a private vault, a daily briefing, and a drafting partner — all running locally. Your information never leaves your machine.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 4</div>
+        <div class="outcome-text">You'll have something you can pass down. A personal AI that knows your family's story, your values, your knowledge — still running long after any subscription would have expired.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 5</div>
+        <div class="outcome-text">You'll be able to teach someone else. Defend your setup. Connect it to new tools. You went from never touching AI to owning the whole stack.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">The whole time</div>
+        <div class="outcome-text">No monthly fee. No one watching your data. No account to cancel. The AI is yours — because you built it.</div>
+      </div>
+    </div>
+
+    <div class="plain-cta">
+      <p><strong>Free. Open source. Works on the computer you already have.</strong> Download it, run one file, and start with Module 1. You can stop at any phase and still walk away with something useful.</p>
+      <a href="https://github.com/thebardchat/AI-Trainer-MAX" class="btn btn-primary">Get Started Free &rarr;</a>
+    </div>
+  </div>
+</section>
 
 <!-- MISSION -->
 <section class="mission">
@@ -988,6 +1091,14 @@
 
     </div>
   </div>
+
+    <!-- VIDEO PLACEHOLDER: After phases — good for a walkthrough/demo video
+    Swap YOUR_ID_HERE with a YouTube video ID when ready, then uncomment.
+    <div class="video-embed" style="margin-top:3rem;">
+      <iframe src="https://www.youtube.com/embed/YOUR_ID_HERE?rel=0&modestbranding=1" title="AI-Trainer MAX — Walkthrough" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+    -->
+
 </section>
 
 <!-- FLOW -->
@@ -1174,6 +1285,14 @@
     <a href="https://github.com/thebardchat/AI-Trainer-OBLIVION" class="btn oblivion-btn">
       Watch the Repo &rarr;
     </a>
+
+    <!-- VIDEO PLACEHOLDER: After OBLIVION callout — good for a "what comes next" or OBLIVION teaser video
+    Swap YOUR_ID_HERE with a YouTube video ID when ready, then uncomment.
+    <div class="video-embed" style="margin-top:3rem;max-width:800px;">
+      <iframe src="https://www.youtube.com/embed/YOUR_ID_HERE?rel=0&modestbranding=1" title="AI-Trainer OBLIVION Teaser" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+    -->
+
   </div>
 </section>
 
@@ -1209,6 +1328,14 @@
       </div>
     </div>
     <div class="eco-note">// Every repo governed by the <a href="https://github.com/thebardchat/constitution" style="color: var(--p1-builders);">thebardchat/constitution</a></div>
+
+    <!-- VIDEO PLACEHOLDER: After ecosystem — good for a "the mission" or origin story video
+    Swap YOUR_ID_HERE with a YouTube video ID when ready, then uncomment.
+    <div class="video-embed" style="margin-top:3rem;">
+      <iframe src="https://www.youtube.com/embed/YOUR_ID_HERE?rel=0&modestbranding=1" title="AI-Trainer MAX — The Story" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+    -->
+
   </div>
 </section>
 
