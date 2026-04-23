@@ -27,13 +27,12 @@
     --text-secondary:#9da3b3;
     --text-dim:      #5c6274;
 
-    /* Phase colors — pulled from the banner podium */
-    --p1-builders:    #3b82f6;  /* blue */
-    --p2-operators:   #22c55e;  /* green */
-    --p3-everyday:    #f5b400;  /* gold */
-    --p4-legacy:      #ef4444;  /* red */
-    --p5-multipliers: #a855f7;  /* purple */
-    --oblivion:       #8b0a0a;  /* void red */
+    --p1-builders:    #3b82f6;
+    --p2-operators:   #22c55e;
+    --p3-everyday:    #f5b400;
+    --p4-legacy:      #ef4444;
+    --p5-multipliers: #a855f7;
+    --oblivion:       #8b0a0a;
 
     --chrome-light:  #f2f3f7;
     --chrome-mid:    #9ea3b3;
@@ -60,7 +59,6 @@
     position: relative;
   }
 
-  /* Scan-line / grid atmosphere */
   body::before {
     content: "";
     position: fixed;
@@ -73,7 +71,6 @@
     z-index: 1;
   }
 
-  /* Noise grain overlay */
   body::after {
     content: "";
     position: fixed;
@@ -87,7 +84,7 @@
 
   .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 3; }
 
-  /* ===================== NAV ===================== */
+  /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
     background: rgba(5, 6, 10, 0.85);
@@ -121,7 +118,7 @@
   .nav-links a:hover { color: var(--text-primary); }
   @media (max-width: 720px) { .nav-links { display: none; } }
 
-  /* ===================== HERO ===================== */
+  /* HERO */
   .hero {
     position: relative;
     padding: 6rem 0 4rem;
@@ -228,7 +225,7 @@
     background: var(--bg-panel-lit);
   }
 
-  /* ===================== STATS BAR ===================== */
+  /* STATS BAR */
   .stats-bar {
     background: var(--bg-deep);
     border-top: 1px solid var(--border);
@@ -272,7 +269,7 @@
     color: var(--text-secondary);
   }
 
-  /* ===================== SECTIONS ===================== */
+  /* SECTIONS */
   section { padding: 6rem 0; position: relative; }
 
   .section-marker {
@@ -310,7 +307,7 @@
     margin-bottom: 4rem;
   }
 
-  /* ===================== MISSION ===================== */
+  /* MISSION */
   .mission { background: var(--bg-deep); }
   .mission-big {
     font-family: var(--font-display);
@@ -331,7 +328,7 @@
   }
   .mission-sub strong { color: var(--p4-legacy); font-weight: 600; }
 
-  /* ===================== PHASES ===================== */
+  /* PHASES */
   .phases-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -438,7 +435,7 @@
   .p4 { --accent: var(--p4-legacy); }
   .p5 { --accent: var(--p5-multipliers); }
 
-  /* ===================== FLOW ===================== */
+  /* FLOW */
   .flow {
     background: var(--bg-deep);
     border-top: 1px solid var(--border);
@@ -481,7 +478,7 @@
     color: var(--text-secondary);
   }
 
-  /* ===================== STACK ===================== */
+  /* STACK */
   .stack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -518,7 +515,7 @@
     color: var(--text-secondary);
   }
 
-  /* ===================== TERMINAL ===================== */
+  /* TERMINAL */
   .terminal {
     background: var(--bg-void);
     border: 1px solid var(--border);
@@ -554,7 +551,7 @@
   .terminal-body .file { color: var(--text-primary); }
   .terminal-body .comment { color: var(--text-dim); }
 
-  /* ===================== HARDWARE ===================== */
+  /* HARDWARE */
   .hardware-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -589,7 +586,7 @@
     font-style: italic;
   }
 
-  /* ===================== OBLIVION CALLOUT ===================== */
+  /* OBLIVION */
   .oblivion {
     background: radial-gradient(ellipse at center, rgba(139, 10, 10, 0.15) 0%, var(--bg-void) 65%);
     border-top: 1px solid var(--oblivion);
@@ -668,7 +665,7 @@
     box-shadow: 0 0 40px rgba(139, 10, 10, 0.6);
   }
 
-  /* ===================== ECOSYSTEM ===================== */
+  /* ECOSYSTEM */
   .ecosystem { background: var(--bg-deep); }
   .eco-chain {
     display: flex;
@@ -718,7 +715,7 @@
     font-family: var(--font-mono);
   }
 
-  /* ===================== FOOTER ===================== */
+  /* FOOTER */
   footer {
     background: var(--bg-void);
     border-top: 1px solid var(--border);
@@ -775,7 +772,24 @@
   }
   .footer-bottom .built { color: var(--p4-legacy); }
 
-  /* ===================== ANIMATIONS ===================== */
+  /* VIDEO EMBED */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -788,7 +802,6 @@
   .reveal:nth-child(5) { animation-delay: 0.5s; }
   .reveal:nth-child(6) { animation-delay: 0.6s; }
 
-  /* Responsive tweaks */
   @media (max-width: 640px) {
     .hero { padding: 3rem 0 2rem; }
     section { padding: 4rem 0; }
@@ -814,9 +827,18 @@
 <!-- HERO -->
 <header class="hero">
   <div class="container">
+
+    <!-- VIDEO: Futuristic AI Trainer MAX Hologram (autoplay, muted, looping) -->
     <div class="hero-banner reveal">
-      <img src="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/banner.png" alt="AI-Trainer-MAX — holographic brain atop the five-phase podium" loading="eager">
+      <iframe
+        src="https://www.youtube.com/embed/xViPj6KZ2p4?autoplay=1&mute=1&loop=1&playlist=xViPj6KZ2p4&controls=0&rel=0&modestbranding=1&playsinline=1"
+        title="AI-Trainer MAX — Local AI for Everyone"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+      ></iframe>
     </div>
+
     <div class="hero-tagline reveal">Angel Cloud AI Training Tools · ACATT</div>
     <h1 class="hero-title reveal"><span class="chrome">Local AI literacy<br>for every person.</span></h1>
     <p class="hero-subtitle reveal">
@@ -855,7 +877,7 @@
         <div class="stat-label">Cloud deps</div>
       </div>
       <div>
-        <div class="stat-num">∞</div>
+        <div class="stat-num">&#8734;</div>
         <div class="stat-label">Subscriptions</div>
       </div>
     </div>
@@ -872,6 +894,18 @@
       This project exists to give them the skills to run AI on their own hardware
       <strong>before that window closes.</strong>
     </p>
+
+    <!-- VIDEO: Golden Hour Lab -->
+    <div class="video-embed" style="margin-top:3rem;max-width:800px;">
+      <iframe
+        src="https://www.youtube.com/embed/Cyjyj2DmE_M?rel=0&modestbranding=1"
+        title="AI-Trainer MAX — Built in Alabama. Built for Everyone."
+        frameborder="0"
+        allow="encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+
   </div>
 </section>
 
@@ -1093,6 +1127,17 @@
       The reference implementation. The home-lab altar.
     </p>
 
+    <!-- VIDEO: Raspberry Pi Macro -->
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/zeZsFHQ_P4Q?rel=0&modestbranding=1"
+        title="AI-Trainer MAX — The Hardware Stack"
+        frameborder="0"
+        allow="encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+
     <div class="hardware-grid">
       <div class="hardware-card">
         <div class="hardware-role">The Brain</div>
@@ -1201,5 +1246,6 @@
 </footer>
 
   <div style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:linear-gradient(90deg,#060910,#0b1124,#060910);border-top:1px solid #1e3060;padding:0.6rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.2rem;font-family:monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;"><span style="width:7px;height:7px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px #f59e0b;display:inline-block;"></span><span style="color:#3d5a78;">Try Claude free for 2 weeks —</span><a href="https://claude.ai/referral/4fAMYN9Ing" target="_blank" rel="noopener" style="color:#00b4d8;text-decoration:none;">Start your free trial →</a><span style="color:#3d5a78;">· AI behind this ecosystem</span></div>
+
 </body>
 </html>
