@@ -22,10 +22,10 @@ const Footer = () => (
           <a href="https://github.com/thebardchat" target="_blank" rel="noopener">thebardchat ↗</a>
         </div>
         <div>
-          <div className="footer-h">Resources</div>
+          <div className="footer-h">Follow</div>
+          <a href="https://www.youtube.com/channel/UCFrv2F3Kird13yfBVIflTVA" target="_blank" rel="noopener">YouTube ↗</a>
           <a href="https://github.com/thebardchat/AI-Trainer-MAX" target="_blank" rel="noopener">GitHub ↗</a>
-          <a href="https://github.com/thebardchat/AI-Trainer-MAX/blob/main/CONSTITUTION.md" target="_blank" rel="noopener">Constitution</a>
-          <a href="#hardware">Hardware guide</a>
+          <a href="https://www.buymeacoffee.com/thebardchat" target="_blank" rel="noopener">Buy Me a Coffee ↗</a>
           <a href="https://github.com/thebardchat/AI-Trainer-MAX/commits/main" target="_blank" rel="noopener">Changelog ↗</a>
         </div>
       </div>
