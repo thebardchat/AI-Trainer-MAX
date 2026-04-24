@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Trainer-MAX · Local AI literacy for every person</title>
+<meta name="description" content="36-module, 5-phase local AI training curriculum. Windows .bat, Ollama + Weaviate + MCP. Built for the 800M. No cloud. No subscription. No permission needed.">
+<meta property="og:title" content="AI-Trainer-MAX">
+<meta property="og:description" content="Local AI literacy for every person. 36 modules. 5 phases. Zero cloud.">
+<meta property="og:image" content="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/banner.png">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-void:       #05060a;
+    --bg-deep:       #0b0d14;
+    --bg-panel:      #12151f;
+    --bg-panel-lit:  #181c2a;
+    --border:        #1f2434;
+    --border-bright: #2d3346;
+
+    --text-primary:  #e8eaf0;
+    --text-secondary:#9da3b3;
+    --text-dim:      #5c6274;
+
+    --p1-builders:    #3b82f6;
+    --p2-operators:   #22c55e;
+    --p3-everyday:    #f5b400;
+    --p4-legacy:      #ef4444;
+    --p5-multipliers: #a855f7;
+    --oblivion:       #8b0a0a;
+
+    --chrome-light:  #f2f3f7;
+    --chrome-mid:    #9ea3b3;
+    --chrome-dark:   #3a3e4c;
+
+    --glow: 0 0 40px;
+
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body:    'Instrument Sans', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-void);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 3; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(5, 6, 10, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    background: linear-gradient(180deg, var(--chrome-light), var(--chrome-mid));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+  }
+  .logo::before { content: "▲ "; color: var(--p1-builders); -webkit-text-fill-color: var(--p1-builders); }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; }
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 6rem 0 4rem;
+    overflow: hidden;
+  }
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 560px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 80px rgba(59, 130, 246, 0.15), 0 0 120px rgba(168, 85, 247, 0.08);
+  }
+  .hero-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(5,6,10,0.95) 100%);
+    pointer-events: none;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--p3-everyday);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-tagline::before { content: ""; width: 40px; height: 1px; background: var(--p3-everyday); }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5.5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+  }
+  .hero-title .chrome {
+    background: linear-gradient(180deg, #ffffff 0%, #d4d7e0 45%, #6c7080 55%, #2a2d38 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0 rgba(0,0,0,0.4));
+  }
+  .hero-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+  .hero-subtitle em {
+    font-style: italic;
+    color: var(--text-primary);
+    background: linear-gradient(90deg, var(--p1-builders), var(--p5-multipliers));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+  }
+
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.625rem;
+    padding: 0.875rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid var(--border-bright);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--text-primary);
+    color: var(--bg-void);
+    border-color: var(--text-primary);
+  }
+  .btn-primary:hover {
+    background: var(--p1-builders);
+    border-color: var(--p1-builders);
+    color: var(--text-primary);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+  }
+  .btn-secondary:hover {
+    border-color: var(--text-primary);
+    background: var(--bg-panel-lit);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats-bar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      var(--p1-builders) 20%,
+      var(--p2-operators) 35%,
+      var(--p3-everyday) 50%,
+      var(--p4-legacy) 65%,
+      var(--p5-multipliers) 80%,
+      transparent);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; position: relative; }
+
+  .section-marker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-marker::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: currentColor;
+    border-radius: 50%;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .section-lead {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin-bottom: 4rem;
+  }
+
+  /* MISSION */
+  .mission { background: var(--bg-deep); }
+  .mission-big {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, var(--chrome-light), var(--chrome-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+  }
+  .mission-sub {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+  .mission-sub strong { color: var(--p4-legacy); font-weight: 600; }
+
+  /* PHASES */
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .phase-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+  }
+  .phase-card-img {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg-void);
+  }
+  .phase-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .phase-card:hover .phase-card-img img {
+    transform: scale(1.04);
+  }
+  .phase-card-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, var(--bg-panel) 100%);
+    pointer-events: none;
+  }
+  .phase-card-body {
+    padding: 1.75rem 1.5rem 2rem;
+    flex: 1;
+  }
+  .phase-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+  .phase-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, var(--accent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .phase-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  .phase-card:hover::after { opacity: 0.08; }
+
+  .phase-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .phase-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .phase-modules {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .phase-audience {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .phase-outcome {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .p1 { --accent: var(--p1-builders); }
+  .p2 { --accent: var(--p2-operators); }
+  .p3 { --accent: var(--p3-everyday); }
+  .p4 { --accent: var(--p4-legacy); }
+  .p5 { --accent: var(--p5-multipliers); }
+
+  /* FLOW */
+  .flow {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    position: relative;
+  }
+  .flow-step {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    border-radius: 4px;
+    position: relative;
+  }
+  .flow-step-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(180deg, var(--chrome-light), var(--chrome-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+  }
+  .flow-step-name {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .flow-step-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  /* STACK */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .stack-item {
+    background: var(--bg-panel);
+    padding: 2rem 1.5rem;
+    transition: background 0.2s ease;
+  }
+  .stack-item:hover { background: var(--bg-panel-lit); }
+  .stack-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+  }
+  .stack-value {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .stack-detail {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+
+  /* TERMINAL */
+  .terminal {
+    background: var(--bg-void);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .terminal-bar {
+    background: var(--bg-panel);
+    padding: 0.625rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-dot.r { background: #ff5f57; }
+  .terminal-dot.y { background: #febc2e; }
+  .terminal-dot.g { background: #28c840; }
+  .terminal-path { margin-left: auto; }
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .terminal-body .dir { color: var(--p1-builders); font-weight: 500; }
+  .terminal-body .file { color: var(--text-primary); }
+  .terminal-body .comment { color: var(--text-dim); }
+
+  /* HARDWARE */
+  .hardware-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .hardware-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .hardware-card:hover { border-color: var(--border-bright); }
+  .hardware-role {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--p2-operators);
+    margin-bottom: 1rem;
+  }
+  .hardware-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hardware-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* OBLIVION */
+  .oblivion {
+    background: radial-gradient(ellipse at center, rgba(139, 10, 10, 0.15) 0%, var(--bg-void) 65%);
+    border-top: 1px solid var(--oblivion);
+    border-bottom: 1px solid var(--oblivion);
+    position: relative;
+    overflow: hidden;
+  }
+  .oblivion::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--oblivion) 50%, transparent);
+    filter: blur(1px);
+  }
+  .oblivion-marker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--oblivion);
+    margin-bottom: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--oblivion);
+    background: rgba(139, 10, 10, 0.1);
+  }
+  .oblivion-marker::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--oblivion);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--oblivion); }
+    50% { opacity: 0.5; box-shadow: 0 0 0 8px transparent; }
+  }
+  .oblivion-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, #ff6b6b 0%, var(--oblivion) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .oblivion-tagline {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .oblivion-body {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .oblivion-btn {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--oblivion);
+  }
+  .oblivion-btn:hover {
+    background: var(--oblivion);
+    color: var(--text-primary);
+    box-shadow: 0 0 40px rgba(139, 10, 10, 0.6);
+  }
+
+  /* ECOSYSTEM */
+  .ecosystem { background: var(--bg-deep); }
+  .eco-chain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .eco-node {
+    flex: 1;
+    min-width: 150px;
+    background: var(--bg-panel);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .eco-node:last-child { border-right: none; }
+  .eco-node-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .eco-node-role {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .eco-node.active { background: var(--bg-panel-lit); }
+  .eco-node.active .eco-node-name {
+    background: linear-gradient(90deg, var(--p1-builders), var(--p5-multipliers));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .eco-note {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-void);
+    border-top: 1px solid var(--border);
+    padding: 4rem 0 3rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 720px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  .footer-brand .logo { font-size: 1.25rem; }
+  .footer-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.75rem; }
+  .footer-col a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text-primary); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .footer-bottom .built { color: var(--p4-legacy); }
+
+  /* VIDEO EMBED */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  /* FOR YOU SECTION */
+  .for-you { background: var(--bg-void); }
+  .for-you-lead {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .for-you-lead strong { color: var(--text-primary); font-weight: 600; }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .outcome-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--p2-operators);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .outcome-card:hover { border-color: var(--p2-operators); }
+  .outcome-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--p2-operators);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+  .outcome-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .plain-cta {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .plain-cta p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 560px;
+  }
+  .plain-cta p strong { color: var(--text-primary); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+  .reveal:nth-child(1) { animation-delay: 0.1s; }
+  .reveal:nth-child(2) { animation-delay: 0.2s; }
+  .reveal:nth-child(3) { animation-delay: 0.3s; }
+  .reveal:nth-child(4) { animation-delay: 0.4s; }
+  .reveal:nth-child(5) { animation-delay: 0.5s; }
+  .reveal:nth-child(6) { animation-delay: 0.6s; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 3rem 0 2rem; }
+    section { padding: 4rem 0; }
+    .container { padding: 0 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">AI-Trainer-MAX</div>
+    <div class="nav-links">
+      <a href="#phases">Phases</a>
+      <a href="#flow">How it works</a>
+      <a href="#stack">Stack</a>
+      <a href="#oblivion">OBLIVION</a>
+      <a href="https://github.com/thebardchat/AI-Trainer-MAX">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+
+    <!-- VIDEO: Futuristic AI Trainer MAX Hologram (autoplay, muted, looping) -->
+    <div class="hero-banner reveal">
+      <iframe
+        src="https://www.youtube.com/embed/xViPj6KZ2p4?autoplay=1&mute=1&loop=1&playlist=xViPj6KZ2p4&controls=0&rel=0&modestbranding=1&playsinline=1"
+        title="AI-Trainer MAX — Local AI for Everyone"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+      ></iframe>
+    </div>
+
+    <div class="hero-tagline reveal">Angel Cloud AI Training Tools · ACATT</div>
+    <h1 class="hero-title reveal"><span class="chrome">Local AI literacy<br>for every person.</span></h1>
+    <p class="hero-subtitle reveal">
+      36 modules. 5 phases. Zero cloud. A CLI-based training system that takes Windows users from
+      <em>installing their first model</em> to <em>passing down a personal AI brain</em> their family can still run after they're gone.
+    </p>
+    <div class="cta-row reveal">
+      <a href="https://github.com/thebardchat/AI-Trainer-MAX" class="btn btn-primary">
+        Start Training &rarr;
+      </a>
+      <a href="#phases" class="btn btn-secondary">
+        View Curriculum
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">36</div>
+        <div class="stat-label">Modules</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Phases</div>
+      </div>
+      <div>
+        <div class="stat-num">7.4<span style="font-size:0.5em">GB</span></div>
+        <div class="stat-label">RAM ceiling</div>
+      </div>
+      <div>
+        <div class="stat-num">0</div>
+        <div class="stat-label">Cloud deps</div>
+      </div>
+      <div>
+        <div class="stat-num">&#8734;</div>
+        <div class="stat-label">Subscriptions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IS THIS FOR ME -->
+<section class="for-you">
+  <div class="container">
+    <div class="section-marker">Before you scroll</div>
+    <h2 class="section-title">You don't need to know what AI is.</h2>
+    <p class="for-you-lead">
+      You don't need to be a programmer. You don't need a new computer, a credit card, or a cloud account.
+      <strong>If you have a Windows PC and want to understand what everyone is talking about</strong> —
+      this is your starting point. No YouTube rabbit holes. No confusing documentation.
+      Just a system that walks you through it, step by step, at your pace.
+    </p>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 1</div>
+        <div class="outcome-text">You'll have a real AI running on your own computer — not someone else's server. You'll understand what's actually happening when you talk to ChatGPT or Claude.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 2</div>
+        <div class="outcome-text">You'll have an AI that knows your work. Ask it questions about your documents, your notes, your business — and it'll answer from what YOU gave it, nothing else.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 3</div>
+        <div class="outcome-text">You'll have a private vault, a daily briefing, and a drafting partner — all running locally. Your information never leaves your machine.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 4</div>
+        <div class="outcome-text">You'll have something you can pass down. A personal AI that knows your family's story, your values, your knowledge — still running long after any subscription would have expired.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">After Phase 5</div>
+        <div class="outcome-text">You'll be able to teach someone else. Defend your setup. Connect it to new tools. You went from never touching AI to owning the whole stack.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">The whole time</div>
+        <div class="outcome-text">No monthly fee. No one watching your data. No account to cancel. The AI is yours — because you built it.</div>
+      </div>
+    </div>
+
+    <div class="plain-cta">
+      <p><strong>Free. Open source. Works on the computer you already have.</strong> Download it, run one file, and start with Module 1. You can stop at any phase and still walk away with something useful.</p>
+      <a href="https://github.com/thebardchat/AI-Trainer-MAX" class="btn btn-primary">Get Started Free &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="container">
+    <div class="section-marker">The stakes</div>
+    <div class="mission-big">800,000,000</div>
+    <p class="mission-sub">
+      Windows 10 users are about to lose security update support. Most have never touched AI.
+      This project exists to give them the skills to run AI on their own hardware
+      <strong>before that window closes.</strong>
+    </p>
+
+    <!-- VIDEO: Golden Hour Lab -->
+    <div class="video-embed" style="margin-top:3rem;max-width:800px;">
+      <iframe
+        src="https://www.youtube.com/embed/Cyjyj2DmE_M?rel=0&modestbranding=1"
+        title="AI-Trainer MAX — Built in Alabama. Built for Everyone."
+        frameborder="0"
+        allow="encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHASES -->
+<section id="phases">
+  <div class="container">
+    <div class="section-marker">The curriculum</div>
+    <h2 class="section-title">Five phases. Zero to AI sovereignty.</h2>
+    <p class="section-lead">
+      Every phase is shipped. Every module has a lesson, an exercise, a verification check,
+      and progressive hints if you get stuck. Built for people who've never opened a terminal.
+    </p>
+
+    <div class="phases-grid">
+
+      <div class="phase-card p1">
+        <div class="phase-card-img">
+          <img src="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/phase1-builders.png" alt="Phase 1 — Builders" loading="lazy">
+        </div>
+        <div class="phase-card-body">
+          <div class="phase-num">PHASE 01 · 5 MODULES</div>
+          <div class="phase-name">Builders</div>
+          <div class="phase-modules">Ollama · vectors · RAG · prompts · packaging</div>
+          <div class="phase-audience">Developers · self-learners</div>
+          <div class="phase-outcome">Local AI with Ollama + RAG, running on your machine, no internet required.</div>
+        </div>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="phase-card-img">
+          <img src="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/phase2-operators.png" alt="Phase 2 — Operators" loading="lazy">
+        </div>
+        <div class="phase-card-body">
+          <div class="phase-num">PHASE 02 · 7 MODULES</div>
+          <div class="phase-name">Operators</div>
+          <div class="phase-modules">Business brain · Q&amp;A · drafts · workflows</div>
+          <div class="phase-audience">Business owners · dispatchers</div>
+          <div class="phase-outcome">Turn your company's knowledge into a private AI that answers, drafts, and decides.</div>
+        </div>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="phase-card-img">
+          <img src="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/phase3-everyday.png" alt="Phase 3 — Everyday" loading="lazy">
+        </div>
+        <div class="phase-card-body">
+          <div class="phase-num">PHASE 03 · 7 MODULES</div>
+          <div class="phase-name">Everyday</div>
+          <div class="phase-modules">Vault · chat · drafting · security · briefings</div>
+          <div class="phase-audience">Non-technical Windows users</div>
+          <div class="phase-outcome">MCP-powered personal AI tools. A private vault, a daily briefing, a drafting partner.</div>
+        </div>
+      </div>
+
+      <div class="phase-card p4">
+        <div class="phase-card-img">
+          <img src="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/phase4-legacy.png" alt="Phase 4 — Legacy" loading="lazy">
+        </div>
+        <div class="phase-card-body">
+          <div class="phase-num">PHASE 04 · 7 MODULES</div>
+          <div class="phase-name">Legacy</div>
+          <div class="phase-modules">YourNameBrain · journaling · storytelling</div>
+          <div class="phase-audience">Families · next generation</div>
+          <div class="phase-outcome">Build a digital inheritance. A personal AI your family can still run after you're gone.</div>
+        </div>
+      </div>
+
+      <div class="phase-card p5">
+        <div class="phase-card-img">
+          <img src="https://raw.githubusercontent.com/thebardchat/AI-Trainer-MAX/main/.github/assets/phase5-multipliers.png" alt="Phase 5 — Multipliers" loading="lazy">
+        </div>
+        <div class="phase-card-body">
+          <div class="phase-num">PHASE 05 · 10 MODULES</div>
+          <div class="phase-name">Multipliers</div>
+          <div class="phase-modules">Hardening · teaching · export · protocol</div>
+          <div class="phase-audience">Phase 1–4 graduates</div>
+          <div class="phase-outcome">Defend it. Teach it. Connect it. Build deeper. For the ones who finish and want more.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- VIDEO PLACEHOLDER: After phases — good for a walkthrough/demo video
+    Swap YOUR_ID_HERE with a YouTube video ID when ready, then uncomment.
+    <div class="video-embed" style="margin-top:3rem;">
+      <iframe src="https://www.youtube.com/embed/YOUR_ID_HERE?rel=0&modestbranding=1" title="AI-Trainer MAX — Walkthrough" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+    -->
+
+</section>
+
+<!-- FLOW -->
+<section class="flow" id="flow">
+  <div class="container">
+    <div class="section-marker">Module shape</div>
+    <h2 class="section-title">Every module. Same spine.</h2>
+    <p class="section-lead">
+      Predictable structure is how beginners survive. Four files per module. Four moves.
+    </p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">01</div>
+        <div class="flow-step-name">Lesson</div>
+        <div class="flow-step-desc">What you'll build. What you need to know. Under 10 minutes of reading.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">02</div>
+        <div class="flow-step-name">Exercise</div>
+        <div class="flow-step-desc">Hands-on tasks in a guided .bat script. Under 15 minutes of doing.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">03</div>
+        <div class="flow-step-name">Verify</div>
+        <div class="flow-step-desc">Automated pass/fail checks with specific failure reasons. No guessing.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">04</div>
+        <div class="flow-step-name">Next</div>
+        <div class="flow-step-desc">Three levels of hints if you're stuck. Then the launcher hands you Module N+1.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="container">
+    <div class="section-marker">The stack</div>
+    <h2 class="section-title">Boring tools. On purpose.</h2>
+    <p class="section-lead">
+      If it needs pip-installed dependencies, cloud accounts, or fashionable frameworks, it didn't make the cut.
+      Everything here runs on a 5-year-old Windows box with curl and Python already installed.
+    </p>
+
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-label">LLM Runtime</div>
+        <div class="stack-value">Ollama</div>
+        <div class="stack-detail">localhost:11434</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">Default Model</div>
+        <div class="stack-value">llama3.2:1b</div>
+        <div class="stack-detail">shanebrain-3b · P3–P5</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">Vector DB</div>
+        <div class="stack-value">Weaviate</div>
+        <div class="stack-detail">localhost:8080</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">MCP Server</div>
+        <div class="stack-value">ShaneBrain MCP</div>
+        <div class="stack-detail">19+ tools · port 8100</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">Scripting</div>
+        <div class="stack-value">Windows .bat</div>
+        <div class="stack-detail">CMD compatible</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">JSON Handling</div>
+        <div class="stack-value">Python stdlib</div>
+        <div class="stack-detail">zero pip installs</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">Content</div>
+        <div class="stack-value">Markdown</div>
+        <div class="stack-detail">grade 8–10 reading level</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-label">Dependencies</div>
+        <div class="stack-value">curl + Python 3.x</div>
+        <div class="stack-detail">both built into Windows 10+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section>
+  <div class="container">
+    <div class="section-marker">File tree</div>
+    <h2 class="section-title">One launcher. Everything else is modules.</h2>
+    <p class="section-lead">
+      Drop into the folder, run <code style="font-family: var(--font-mono); color: var(--p3-everyday); background: var(--bg-panel); padding: 0.125rem 0.375rem; border-radius: 2px;">launch-training.bat</code>,
+      start with Module 1.1. The launcher handles health checks, progress tracking, and module navigation.
+    </p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot r"></span>
+        <span class="terminal-dot y"></span>
+        <span class="terminal-dot g"></span>
+        <span class="terminal-path">C:\AI-Trainer-MAX&gt; tree /F</span>
+      </div>
+<div class="terminal-body">AI-Trainer-MAX/
+├── <span class="file">launch-training.bat</span>              <span class="comment"># Main entry point — start here</span>
+├── <span class="file">config.json</span>                      <span class="comment"># Module registry + metadata</span>
+├── <span class="dir">phases/</span>
+│   ├── <span class="dir">phase-1-builders/</span>            <span class="comment"># 5 modules — Ollama, vectors, RAG</span>
+│   ├── <span class="dir">phase-2-operators/</span>           <span class="comment"># 7 modules — Business brain, workflows</span>
+│   ├── <span class="dir">phase-3-everyday/</span>            <span class="comment"># 7 modules — Vault, chat, briefings</span>
+│   ├── <span class="dir">phase-4-legacy/</span>              <span class="comment"># 7 modules — YourNameBrain, storytelling</span>
+│   └── <span class="dir">phase-5-multipliers/</span>         <span class="comment"># 10 modules — Hardening, teaching</span>
+├── <span class="dir">progress/</span>
+│   └── <span class="file">user-progress.json</span>           <span class="comment"># Auto-tracked completion data</span>
+└── <span class="dir">shared/</span>
+    ├── <span class="dir">ascii-art/</span>                   <span class="comment"># CLI branding assets</span>
+    └── <span class="dir">utils/</span>
+        ├── <span class="file">health-check.bat</span>         <span class="comment"># Ollama + Weaviate check</span>
+        ├── <span class="file">mcp-call.py</span>              <span class="comment"># MCP client (stdlib only)</span>
+        └── <span class="file">mcp-health-check.bat</span>     <span class="comment"># MCP server check</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section>
+  <div class="container">
+    <div class="section-marker">The hardware</div>
+    <h2 class="section-title">What runs it all.</h2>
+    <p class="section-lead">
+      Every <code style="font-family: var(--font-mono); color: var(--p2-operators);">thebardchat</code> repo runs on the same physical stack.
+      The reference implementation. The home-lab altar.
+    </p>
+
+    <!-- VIDEO: Raspberry Pi Macro -->
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/zeZsFHQ_P4Q?rel=0&modestbranding=1"
+        title="AI-Trainer MAX — The Hardware Stack"
+        frameborder="0"
+        allow="encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="hardware-grid">
+      <div class="hardware-card">
+        <div class="hardware-role">The Brain</div>
+        <div class="hardware-name">Raspberry Pi 5 · 16GB</div>
+        <div class="hardware-desc">Local AI inference node. Ollama, Weaviate, MCP, all running simultaneously.</div>
+      </div>
+      <div class="hardware-card">
+        <div class="hardware-role">The Spine</div>
+        <div class="hardware-name">Pironman 5-MAX</div>
+        <div class="hardware-desc">NVMe RAID chassis by Sunfounder. Active cooling. OLED status display.</div>
+      </div>
+      <div class="hardware-card">
+        <div class="hardware-role">The Memory</div>
+        <div class="hardware-name">2× WD Blue SN5000 · 2TB NVMe</div>
+        <div class="hardware-desc">RAID 1 via mdadm. Nothing lost when one drive fails — and one will.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBLIVION CALLOUT -->
+<section class="oblivion" id="oblivion">
+  <div class="container">
+    <div class="oblivion-marker">Next chapter · Coming Soon</div>
+    <h2 class="oblivion-title">AI-Trainer-<br>OBLIVION</h2>
+    <p class="oblivion-tagline">For the graduates. Bring a bigger machine.</p>
+    <p class="oblivion-body">
+      MAX takes you from zero to AI sovereignty. OBLIVION is what comes after —
+      the depths most curriculums skip. Fine-tuning. LoRA on consumer hardware.
+      Quantization trade-offs. Custom Modelfiles. Eval harnesses. The research-math layer of local AI.
+      <br><br>
+      Gate-kept on purpose. Finish Phase 5 of MAX before you walk in.
+    </p>
+    <a href="https://github.com/thebardchat/AI-Trainer-OBLIVION" class="btn oblivion-btn">
+      Watch the Repo &rarr;
+    </a>
+
+    <!-- VIDEO PLACEHOLDER: After OBLIVION callout — good for a "what comes next" or OBLIVION teaser video
+    Swap YOUR_ID_HERE with a YouTube video ID when ready, then uncomment.
+    <div class="video-embed" style="margin-top:3rem;max-width:800px;">
+      <iframe src="https://www.youtube.com/embed/YOUR_ID_HERE?rel=0&modestbranding=1" title="AI-Trainer OBLIVION Teaser" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+    -->
+
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section class="ecosystem">
+  <div class="container">
+    <div class="section-marker">Where this fits</div>
+    <h2 class="section-title">Part of the ShaneBrain ecosystem.</h2>
+    <p class="section-lead">
+      One arc. Five layers. Every project feeds the next.
+    </p>
+
+    <div class="eco-chain">
+      <div class="eco-node">
+        <div class="eco-node-name">ShaneBrain</div>
+        <div class="eco-node-role">Local · Private</div>
+      </div>
+      <div class="eco-node active">
+        <div class="eco-node-name">AI-Trainer-MAX</div>
+        <div class="eco-node-role">Training layer</div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-name">Angel Cloud</div>
+        <div class="eco-node-role">Public · Families</div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-name">Pulsar AI</div>
+        <div class="eco-node-role">Enterprise · Secure</div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-name">TheirNameBrain</div>
+        <div class="eco-node-role">Legacy · Generational</div>
+      </div>
+    </div>
+    <div class="eco-note">// Every repo governed by the <a href="https://github.com/thebardchat/constitution" style="color: var(--p1-builders);">thebardchat/constitution</a></div>
+
+    <!-- VIDEO PLACEHOLDER: After ecosystem — good for a "the mission" or origin story video
+    Swap YOUR_ID_HERE with a YouTube video ID when ready, then uncomment.
+    <div class="video-embed" style="margin-top:3rem;">
+      <iframe src="https://www.youtube.com/embed/YOUR_ID_HERE?rel=0&modestbranding=1" title="AI-Trainer MAX — The Story" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+    -->
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">AI-Trainer-MAX</div>
+        <div class="footer-tagline">"Your legacy runs local."</div>
+      </div>
+      <div class="footer-col">
+        <h4>Repo</h4>
+        <ul>
+          <li><a href="https://github.com/thebardchat/AI-Trainer-MAX">Source</a></li>
+          <li><a href="https://github.com/thebardchat/AI-Trainer-MAX/issues">Issues</a></li>
+          <li><a href="https://github.com/thebardchat/constitution">Constitution</a></li>
+          <li><a href="https://huggingface.co/thebardchat">Hugging Face</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="https://thebardchat.github.io/angelcloud-actual/">angelcloud-actual</a></li>
+          <li><a href="https://thebardchat.github.io/thought-tree/">thought-tree</a></li>
+          <li><a href="https://thebardchat.github.io/srm-dispatch/">srm-dispatch</a></li>
+          <li><a href="https://thebardchat.github.io/mini-shanebrain/">mini-shanebrain</a></li>
+          <li><a href="https://thebardchat.github.io/shanebrain-learning/">shanebrain-learning</a></li>
+          <li><a href="https://thebardchat.github.io/multi-container-app/">multi-container-app</a></li>
+          <li><a href="https://thebardchat.github.io/treasures/">treasures hub</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://github.com/sponsors/thebardchat">Sponsor on GitHub</a></li>
+          <li><a href="https://www.amazon.com/Probably-Think-This-Book-About/dp/B0GT25R5FD">Buy the book</a></li>
+          <li><a href="https://github.com/thebardchat">Star the repos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 thebardchat · MIT License</div>
+      <div class="built">Built in Alabama. Built for everyone.</div>
+    </div>
+  </div>
+</footer>
+
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:linear-gradient(90deg,#060910,#0b1124,#060910);border-top:1px solid #1e3060;padding:0.6rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.2rem;font-family:monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;"><span style="width:7px;height:7px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px #f59e0b;display:inline-block;"></span><span style="color:#3d5a78;">Try Claude free for 2 weeks —</span><a href="https://claude.ai/referral/4fAMYN9Ing" target="_blank" rel="noopener" style="color:#00b4d8;text-decoration:none;">Start your free trial →</a><span style="color:#3d5a78;">· AI behind this ecosystem</span></div>
+
+</body>
+</html>

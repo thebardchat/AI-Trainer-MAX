@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Trainer MAX — AI Literacy for Everyone</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: #22c55e; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 24px;
+      background: radial-gradient(ellipse at top, #0f1f0f 0%, #0a0a0a 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(34,197,94,0.04) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3);
+      color: #22c55e;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 900px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .hero h1 span {
+      color: #22c55e;
+    }
+
+    .hero .sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: #999;
+      max-width: 620px;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: #22c55e;
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: #16a34a;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #f0f0f0;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      transition: border-color 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+    .btn-secondary:hover {
+      border-color: #555;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* STAT BAR */
+    .stat-bar {
+      background: #111;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      padding: 28px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #22c55e;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* SECTION */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      color: #aaa;
+      max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    /* PROBLEM SECTION */
+    .problem-block {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-left: 3px solid #ef4444;
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .problem-block h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #f87171;
+    }
+
+    .problem-block p {
+      color: #999;
+      font-size: 1rem;
+    }
+
+    /* PHASES */
+    .phases {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .phase {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 24px 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+
+    .phase:hover {
+      border-color: #22c55e;
+    }
+
+    .phase-num {
+      background: rgba(34,197,94,0.1);
+      color: #22c55e;
+      font-weight: 800;
+      font-size: 0.9rem;
+      min-width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .phase-content h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .phase-content p {
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    /* FOR WHO */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .audience-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .audience-card:hover {
+      border-color: #333;
+    }
+
+    .audience-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .audience-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .audience-card p {
+      color: #666;
+      font-size: 0.875rem;
+    }
+
+    /* QUOTE */
+    .quote-block {
+      background: radial-gradient(ellipse at center, #0f1f0f 0%, #0a0a0a 100%);
+      border: 1px solid #1a2a1a;
+      border-radius: 12px;
+      padding: 64px 40px;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #22c55e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .quote-attr {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: 40px;
+      width: 2px;
+      background: linear-gradient(to bottom, #22c55e, #166534);
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .step-dot {
+      min-width: 40px;
+      height: 40px;
+      background: #22c55e;
+      color: #000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      padding-top: 8px;
+    }
+
+    .step-body p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* REQUIREMENTS */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .req-item {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .req-item .req-icon {
+      color: #22c55e;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      color: #333;
+      font-size: 0.875rem;
+      border-top: 1px solid #111;
+    }
+
+    footer a { color: #444; }
+    footer a:hover { color: #22c55e; }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      padding: 80px 24px;
+      background: #080808;
+      border-top: 1px solid #111;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: #777;
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Free &amp; Open Source · No Cloud Required</div>
+  <h1>AI for the people <span>Big Tech forgot.</span></h1>
+  <p class="sub">AI-Trainer MAX teaches anyone to run, own, and understand AI — on the computer they already have, with no internet account, no subscription, no tech background required.</p>
+  <div class="hero-cta">
+    <a href="https://github.com/thebardchat/AI-Trainer-MAX" class="btn-primary" target="_blank">Get AI-Trainer MAX →</a>
+    <a href="#what-it-is" class="btn-secondary">See how it works</a>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat">
+    <span class="stat-number">800M</span>
+    <span class="stat-label">Windows 10 users losing support</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">36</span>
+    <span class="stat-label">Training modules</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">5</span>
+    <span class="stat-label">Phases from zero to capable</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">$0</span>
+    <span class="stat-label">Cloud accounts needed</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="what-it-is">
+  <div class="section-label">The Problem</div>
+  <h2>Everyone is moving to AI. <br/>Not everyone got the memo.</h2>
+  <p class="lead">800 million people use Windows 10. In 2025, Microsoft ended security support for it. Most of those people have never touched AI — and nobody is coming to teach them. Not Google. Not OpenAI. Not anyone.</p>
+
+  <div class="problem-block">
+    <h3>They don't have the latest hardware.</h3>
+    <p>Most AI tools require expensive GPUs, fast internet, and cloud subscriptions. Real people have old laptops, slow connections, and no budget for subscriptions they don't understand.</p>
+  </div>
+
+  <div class="problem-block">
+    <h3>They won't learn it from a YouTube video.</h3>
+    <p>Most AI education is built for people who already know what they're doing. Tutorials assume you know what a terminal is. Documentation assumes you went to college for this. Real people get lost in the first five minutes and never come back.</p>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SOLUTION -->
+<section>
+  <div class="section-label">The Solution</div>
+  <h2>An AI that teaches AI — <br/>step by step, on your machine.</h2>
+  <p class="lead">AI-Trainer MAX is a training system that lives on your computer and walks you through AI from the very beginning. No YouTube. No textbooks. No cloud account. Just you, your machine, and a guide that meets you where you are.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <h3>Download it. Run one file.</h3>
+        <p>Double-click <code style="background:#1a1a1a;padding:2px 6px;border-radius:4px;font-size:0.85rem;">launch-training.bat</code> — that's it. The system handles the rest: health checks, setup, progress tracking.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <h3>Start at Module 1. Go at your pace.</h3>
+        <p>36 modules across 5 phases. Each one builds on the last. The system tracks where you are and picks up where you left off.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <h3>Finish with your own personal AI.</h3>
+        <p>By Phase 5, you've built something that belongs to you — a personal AI brain running entirely on your own hardware. No monthly fee. No one else's server. Yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PHASES -->
+<section>
+  <div class="section-label">The Curriculum</div>
+  <h2>Five phases. Zero assumptions.</h2>
+  <p class="lead">Every phase is designed for someone who has never done this before. No prior experience required at any step.</p>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-num">1</div>
+      <div class="phase-content">
+        <h3>Foundation — What AI actually is</h3>
+        <p>Install your first model. Understand what's happening under the hood in plain English. Ask it your first questions.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">2</div>
+      <div class="phase-content">
+        <h3>Control — Make it do what you want</h3>
+        <p>Learn how to talk to AI effectively. Stop getting useless answers. Start getting real help.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">3</div>
+      <div class="phase-content">
+        <h3>Memory — Give it context about your life</h3>
+        <p>Connect your AI to your own documents, notes, and information so it knows who you are and what you need.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">4</div>
+      <div class="phase-content">
+        <h3>Automation — Let it work while you sleep</h3>
+        <p>Build simple workflows that run on their own. AI that does tasks without you having to ask every time.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">5</div>
+      <div class="phase-content">
+        <h3>Ownership — Your personal AI brain</h3>
+        <p>A fully personal AI system running on your hardware. Something you built. Something you own. Something you can pass down.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- WHO IT'S FOR -->
+<section>
+  <div class="section-label">Who It's For</div>
+  <h2>Built for people, not developers.</h2>
+  <p class="lead">If you've ever said "I'm not a tech person" — this was made for you.</p>
+
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-icon">👩‍💼</div>
+      <h3>Workers being left behind</h3>
+      <p>Your job is changing. AI is part of it now. This teaches you what you need to know without making you feel stupid.</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">👨‍👩‍👧‍👦</div>
+      <h3>Families on older hardware</h3>
+      <p>Works on the computer you already have. No new laptop. No new subscription. Just download and run.</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">🏫</div>
+      <h3>Libraries &amp; community centers</h3>
+      <p>Free, open source, runs offline. Perfect for digital literacy programs where internet access isn't guaranteed.</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">🏢</div>
+      <h3>Workforce development orgs</h3>
+      <p>A structured 36-module curriculum ready to deploy for workers who need AI skills without a cloud environment.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- REQUIREMENTS -->
+<section>
+  <div class="section-label">What You Need</div>
+  <h2>Not much.</h2>
+  <p class="lead">Built to work on the hardware most people actually have.</p>
+
+  <div class="req-grid">
+    <div class="req-item">
+      <span class="req-icon">✓</span>
+      Windows 10 or 11
+    </div>
+    <div class="req-item">
+      <span class="req-icon">✓</span>
+      7.4 GB RAM minimum
+    </div>
+    <div class="req-item">
+      <span class="req-icon">✓</span>
+      No cloud account needed
+    </div>
+    <div class="req-item">
+      <span class="req-icon">✓</span>
+      No monthly subscription
+    </div>
+    <div class="req-item">
+      <span class="req-icon">✓</span>
+      No prior tech experience
+    </div>
+    <div class="req-item">
+      <span class="req-icon">✓</span>
+      Free and open source
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- QUOTE -->
+<section>
+  <div class="quote-block">
+    <div class="quote-text">"AI literacy is a right, not a subscription."</div>
+    <div class="quote-attr">— AI-Trainer MAX · Built by Shane Brazelton · thebardchat</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to start?</h2>
+  <p>Free. Open source. Works on the computer you already have. No account required.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="https://github.com/thebardchat/AI-Trainer-MAX" class="btn-primary" target="_blank">Get AI-Trainer MAX on GitHub →</a>
+  </div>
+  <p style="margin-top:24px;font-size:0.8rem;color:#333;">
+    Part of the <a href="https://github.com/thebardchat" target="_blank">Angel Cloud ecosystem</a> ·
+    Advanced users: <a href="https://github.com/thebardchat/AI-Trainer-OBLIVION" target="_blank">AI-Trainer OBLIVION →</a>
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>AI-Trainer MAX is free and open source under the MIT License.</p>
+  <p style="margin-top:8px;">Built by <a href="https://github.com/thebardchat" target="_blank">thebardchat</a> · <a href="https://github.com/thebardchat/AI-Trainer-MAX" target="_blank">GitHub</a></p>
+</footer>
+
+</body>
+</html>
