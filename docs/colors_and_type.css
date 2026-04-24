@@ -1,0 +1,222 @@
+/* ============================================================
+   AI TRAINER MAX · Angel Cloud AI Training Tools (ACATT)
+   Core design tokens — colors + type
+   Source: docs/index.html site CSS + CONSTITUTION
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- SURFACE / BACKGROUND -------------------------------- */
+  --bg-void:        #05060a;   /* page bg — near-black with blue undertone */
+  --bg-deep:        #0b0d14;   /* section-break bg (stats bar, mission) */
+  --bg-panel:       #12151f;   /* card / terminal chrome bg */
+  --bg-panel-lit:   #181c2a;   /* hovered / active panel */
+
+  --border:         #1f2434;   /* default hairline */
+  --border-bright:  #2d3346;   /* emphasized border */
+
+  /* ---- TEXT ------------------------------------------------- */
+  --fg-primary:     #e8eaf0;   /* body copy, headlines */
+  --fg-secondary:   #9da3b3;   /* lead copy, descriptions */
+  --fg-dim:         #5c6274;   /* section markers, footer bottom */
+
+  /* ---- PHASE ACCENTS (the 5-color spine) ------------------- */
+  --p1-builders:    #3b82f6;   /* blue — developers */
+  --p2-operators:   #22c55e;   /* green — business owners */
+  --p3-everyday:    #f5b400;   /* amber — non-technical users */
+  --p4-legacy:      #ef4444;   /* red — families / legacy */
+  --p5-multipliers: #a855f7;   /* purple — graduates */
+  --oblivion:       #8b0a0a;   /* deep crimson — the next chapter */
+
+  /* ---- CHROME (for hero text gradient) --------------------- */
+  --chrome-light:   #f2f3f7;
+  --chrome-mid:     #9ea3b3;
+  --chrome-dark:    #3a3e4c;
+
+  /* ---- GRADIENTS ------------------------------------------- */
+  --grad-chrome:    linear-gradient(180deg, #ffffff 0%, #d4d7e0 45%, #6c7080 55%, #2a2d38 100%);
+  --grad-chrome-soft: linear-gradient(180deg, var(--chrome-light), var(--chrome-dark));
+  --grad-spectrum:  linear-gradient(90deg,
+                      transparent,
+                      var(--p1-builders) 20%,
+                      var(--p2-operators) 35%,
+                      var(--p3-everyday) 50%,
+                      var(--p4-legacy) 65%,
+                      var(--p5-multipliers) 80%,
+                      transparent);
+  --grad-builder-mult: linear-gradient(90deg, var(--p1-builders), var(--p5-multipliers));
+
+  /* ---- FONT FAMILIES --------------------------------------- */
+  --font-display:   'Unbounded', system-ui, sans-serif;
+  --font-body:      'Instrument Sans', system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', 'Courier New', monospace;
+
+  /* ---- SIZE SCALE (rem) ------------------------------------ */
+  --t-micro:        0.6875rem;   /* 11px — stack labels */
+  --t-mono:         0.75rem;     /* 12px — nav, section-markers */
+  --t-small:        0.8125rem;   /* 13px — terminal body, buttons */
+  --t-base:         1rem;        /* 16px — body */
+  --t-lead:         1.125rem;    /* 18px — section lead */
+  --t-h3:           1.5rem;      /* 24px — phase-name */
+  --t-h2:           clamp(1.75rem, 3.5vw, 2.75rem);
+  --t-h1:           clamp(2rem, 5.5vw, 4.5rem);
+  --t-hero-max:     clamp(2.5rem, 8vw, 6rem);
+
+  /* ---- STRUCTURE ------------------------------------------- */
+  --radius:         4px;         /* default — terminal/card corner */
+  --radius-lg:      8px;
+  --radius-pill:    100px;
+  --border-width:   1px;
+  --accent-bar:     3px;          /* top-of-card color stripe */
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease-out:       cubic-bezier(0.2, 0.6, 0.2, 1);
+  --t-fast:         0.2s;
+  --t-med:          0.3s;
+  --t-slow:         0.6s;
+
+  /* ---- ELEVATION / GLOW ------------------------------------ */
+  --shadow-card-hover: 0 20px 60px rgba(0,0,0,0.4);
+  --glow-blue:      0 0 30px rgba(59, 130, 246, 0.5);
+  --glow-green:     0 0 30px rgba(34, 197, 94, 0.4);
+  --glow-amber:     0 0 30px rgba(245, 180, 0, 0.4);
+  --glow-red:       0 0 40px rgba(139, 10, 10, 0.6);
+  --glow-purple:    0 0 30px rgba(168, 85, 247, 0.4);
+  --glow-hero:      0 0 80px rgba(59, 130, 246, 0.15), 0 0 120px rgba(168, 85, 247, 0.08);
+
+  /* ---- BACKGROUND TEXTURES --------------------------------- */
+  --grid-bg:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  --grid-size: 48px 48px;
+}
+
+/* ============================================================
+   SEMANTIC BASE TYPE
+   ============================================================ */
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--fg-primary);
+  line-height: 1.6;
+  font-size: var(--t-base);
+}
+
+/* -- Display (hero) --
+   Chrome-gradient text. Use .chrome to clip the gradient into the text.
+   Unbounded 900 weight, negative letter-spacing, tight line-height. */
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--t-h1);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.h-display.chrome,
+.t-chrome {
+  background: var(--grad-chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.4));
+}
+
+/* -- Section title (h2) -- */
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary);
+}
+
+/* -- Card/phase name (h3) -- */
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-h3);
+  letter-spacing: -0.01em;
+  color: var(--fg-primary);
+}
+
+/* -- Body lead -- */
+.lead, .section-lead {
+  font-size: var(--t-lead);
+  color: var(--fg-secondary);
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+/* -- Body paragraph -- */
+p { color: var(--fg-primary); }
+
+/* -- MICRO-LABEL --
+   Monospace, uppercase, wide tracking. Used for:
+   · section markers ("THE CURRICULUM")
+   · stack labels ("LLM RUNTIME")
+   · phase-num ("PHASE 01 · 5 MODULES")
+   · nav links
+*/
+.t-micro, .micro-label, .section-marker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  font-weight: 500;
+}
+.section-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-marker::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+/* -- Hero tagline (colored micro-label with rule) --
+   "Angel Cloud AI Training Tools · ACATT" */
+.t-tagline {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--p3-everyday);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.t-tagline::before {
+  content: "";
+  width: 40px; height: 1px;
+  background: currentColor;
+}
+
+/* -- Code / terminal -- */
+code, .t-code {
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  color: var(--p3-everyday);
+  background: var(--bg-panel);
+  padding: 0.125rem 0.375rem;
+  border-radius: 2px;
+}
+
+/* -- Numeric stat (for the 800,000,000 treatment) -- */
+.t-stat-big {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--t-hero-max);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: var(--grad-chrome-soft);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
