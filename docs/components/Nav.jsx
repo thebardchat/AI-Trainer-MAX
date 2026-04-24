@@ -6,7 +6,7 @@ const Nav = () => (
       <a href="#how">How it works</a>
       <a href="#stack">Stack</a>
       <a href="#oblivion">OBLIVION</a>
-      <a href="#github">GitHub ↗</a>
+      <a href="https://github.com/thebardchat/AI-Trainer-MAX" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </nav>
 );

@@ -12,6 +12,10 @@ const OblivionCallout = () => (
         <span>Hardware · Power tier+</span>
         <span>Release · When it's ready</span>
       </div>
+      <div className="oblivion-ctas">
+        <a className="btn btn-primary" href="https://github.com/thebardchat/AI-Trainer-MAX" target="_blank" rel="noopener">Start with MAX first →</a>
+        <a className="btn btn-secondary" href="https://github.com/thebardchat" target="_blank" rel="noopener">Watch the repo</a>
+      </div>
     </div>
   </section>
 );

@@ -177,6 +177,11 @@ main,nav,section,footer{position:relative;z-index:1}
 .oblivion-tag em{font-style:italic}
 .oblivion-body{margin:.5rem 0 0;text-align:center}
 .oblivion-reqs{display:flex;gap:2rem;margin-top:.5rem;flex-wrap:wrap;justify-content:center;font-family:var(--font-mono);font-size:var(--t-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--fg-dim)}
+.oblivion-ctas{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;justify-content:center}
+.oblivion-ctas .btn-primary{border-color:var(--oblivion);background:var(--oblivion);color:#fff}
+.oblivion-ctas .btn-primary:hover{background:transparent;color:var(--oblivion);box-shadow:var(--glow-red)}
+.oblivion-ctas .btn-secondary{border-color:var(--oblivion);color:var(--oblivion)}
+.oblivion-ctas .btn-secondary:hover{background:var(--oblivion);color:#fff;box-shadow:var(--glow-red)}
 
 /* ---------- VIDEO REEL ---------- */
 .video-reel{padding:6rem 0;background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative}

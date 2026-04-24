@@ -8,31 +8,31 @@ const Footer = () => (
       <div className="footer-cols">
         <div>
           <div className="footer-h">Curriculum</div>
-          <a>Phase 1 · Builders</a>
-          <a>Phase 2 · Operators</a>
-          <a>Phase 3 · Everyday</a>
-          <a>Phase 4 · Legacy</a>
-          <a>Phase 5 · Multipliers</a>
+          <a href="#phases">Phase 1 · Builders</a>
+          <a href="#phases">Phase 2 · Operators</a>
+          <a href="#phases">Phase 3 · Everyday</a>
+          <a href="#phases">Phase 4 · Legacy</a>
+          <a href="#phases">Phase 5 · Multipliers</a>
         </div>
         <div>
           <div className="footer-h">Ecosystem</div>
-          <a>ShaneBrain</a>
-          <a>Angel Cloud</a>
-          <a>Pulsar AI</a>
-          <a>OBLIVION</a>
+          <a href="https://angel-cloud-hub.pages.dev" target="_blank" rel="noopener">Angel Cloud</a>
+          <a href="https://halofinance.pages.dev" target="_blank" rel="noopener">HaloFinance</a>
+          <a href="https://ai-trainer-oblivion.pages.dev" target="_blank" rel="noopener">OBLIVION</a>
+          <a href="https://github.com/thebardchat" target="_blank" rel="noopener">thebardchat ↗</a>
         </div>
         <div>
           <div className="footer-h">Resources</div>
-          <a>GitHub ↗</a>
-          <a>Constitution</a>
-          <a>Hardware guide</a>
-          <a>Changelog</a>
+          <a href="https://github.com/thebardchat/AI-Trainer-MAX" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://github.com/thebardchat/AI-Trainer-MAX/blob/main/CONSTITUTION.md" target="_blank" rel="noopener">Constitution</a>
+          <a href="#hardware">Hardware guide</a>
+          <a href="https://github.com/thebardchat/AI-Trainer-MAX/commits/main" target="_blank" rel="noopener">Changelog ↗</a>
         </div>
       </div>
     </div>
     <div className="footer-rule"/>
     <div className="container footer-base">
-      <span>MIT · © 2025 thebardchat</span>
+      <span>MIT · © 2026 thebardchat</span>
       <span>Your legacy runs local. ⋆ Built with Ollama · Weaviate · Claude</span>
     </div>
   </footer>

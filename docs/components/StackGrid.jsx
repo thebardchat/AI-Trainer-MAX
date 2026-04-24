@@ -1,7 +1,7 @@
 const STACK = [
   { lbl:"LLM Runtime",  val:"Ollama",     det:"localhost:11434" },
   { lbl:"Vector DB",    val:"Weaviate",   det:"localhost:8080"  },
-  { lbl:"MCP Server",   val:"ShaneBrain", det:"19 tools · :8100" },
+  { lbl:"MCP Server",   val:"ShaneBrain", det:"29 tools · :8100" },
   { lbl:"Scripting",    val:"Windows .bat", det:"CMD compatible" },
   { lbl:"Reasoning",    val:"Claude",     det:"Anthropic"  },
   { lbl:"Edge device",  val:"Raspberry Pi", det:"Optional · home server" },
